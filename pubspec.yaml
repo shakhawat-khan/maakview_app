@@ -37,6 +37,10 @@ dependencies:
   flutter_svg: ^1.1.0
   animated_splash_screen: ^1.2.0
   flutter_native_splash:
+  google_fonts: ^3.0.1
+  country_code_picker: ^2.0.2
+  country_pickers: ^2.0.0
+  flutter_signin_button: ^2.0.0
 
 
 
