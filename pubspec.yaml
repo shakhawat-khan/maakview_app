@@ -41,6 +41,8 @@ dependencies:
   country_code_picker: ^2.0.2
   country_pickers: ^2.0.0
   flutter_signin_button: ^2.0.0
+  font_awesome_flutter:
+  fluttertoast:
 
 
 
@@ -77,6 +79,8 @@ flutter:
     - assets/homepage/appbar/
     - assets/splash_screen/
     - assets/app_logo/
+    - assets/homepage/sign_in_button_logo/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
