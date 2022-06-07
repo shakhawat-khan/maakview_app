@@ -3,15 +3,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maakview_app/view/Otp_verification.dart';
+import 'package:maakview_app/view/term_and_condition.dart';
 
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with ChangeNotifier {
+  final formKey = GlobalKey<FormState>();
   String password = '';
   bool isChecked = false;
+  String phoneNumber = '';
 
   final Color facebookColor = const Color(0xff39579A);
   final Color googleColor = const Color(0xffDF4A32);
@@ -65,7 +68,7 @@ class _MyAppState extends State<MyApp> {
                 height: 7,
               ),
               Container(
-                height: 60,
+                height: 100,
                 width: double.infinity,
                 child: Card(
                   shape: RoundedRectangleBorder(
@@ -79,12 +82,33 @@ class _MyAppState extends State<MyApp> {
                         showOnlyCountryWhenClosed: false,
                       ),
                       Flexible(
-                        child: TextFormField(
+                        child: Form(
+                          key: formKey,
+                          child: TextFormField(
                             keyboardType: TextInputType.number,
-                            decoration: InputDecoration.collapsed(
+                            decoration: InputDecoration(
+                              //border: OutlineInputBorder(),
                               //labelText: 'Phone Number',
                               hintText: 'Phone Number',
-                            )),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.length < 10) {
+                                setState(() {
+                                  phoneNumber = value!.length.toString();
+                                });
+                                //print('hello');
+                                return 'Enter at least 10 digits';
+                              } else
+                                null;
+                            },
+                            onSaved: (value) {
+                              setState(() {
+                                phoneNumber = value.toString();
+                                print(value);
+                              });
+                            },
+                          ),
+                        ),
                       )
                     ],
                   ),
@@ -102,12 +126,34 @@ class _MyAppState extends State<MyApp> {
                       });
                     },
                   ),
-                  Text(
-                    'I agree to the terms & condition',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontSize: 12),
-                        fontWeight: FontWeight.w500),
-                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'I agree to the',
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                          fontSize: 12,
+                          color: Colors.black,
+                        )),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Condition()));
+                        },
+                        child: Text(
+                          ' terms & condition',
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  decoration: TextDecoration.underline,
+                                  decorationThickness: 2)),
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
               SizedBox(
@@ -119,8 +165,14 @@ class _MyAppState extends State<MyApp> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.indigo[900]),
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => Otp()));
+                    if (isChecked == false ||
+                        formKey.currentState!.validate() == false) {
+                      //print('error');
+                    } else {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Otp(number: phoneNumber)));
+                      print(phoneNumber);
+                    }
                   },
                   child: Text(
                     'Login',
