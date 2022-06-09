@@ -2,7 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:maakview_app/view/Otp_verification.dart';
+import 'package:maakview_app/view/otp/otp_verification.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
 
 class MyApp extends StatefulWidget {
@@ -16,8 +16,11 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
   bool isChecked = false;
   String phoneNumber = '';
 
+
   final Color facebookColor = const Color(0xff39579A);
   final Color googleColor = const Color(0xffDF4A32);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -93,18 +96,16 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                             ),
                             validator: (value) {
                               if (value == null || value.length < 10) {
-                                setState(() {
-                                  phoneNumber = value!.length.toString();
-                                });
+                                phoneNumber = value!;
                                 //print('hello');
                                 return 'Enter at least 10 digits';
                               } else
                                 null;
                             },
-                            onSaved: (value) {
+                            onChanged: (value) {
                               setState(() {
                                 phoneNumber = value.toString();
-                                print(value);
+                                //print(value);
                               });
                             },
                           ),
@@ -169,6 +170,7 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                         formKey.currentState!.validate() == false) {
                       //print('error');
                     } else {
+                      //phoneNumber = value!;
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => Otp(number: phoneNumber)));
                       print(phoneNumber);
