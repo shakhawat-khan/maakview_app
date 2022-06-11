@@ -47,6 +47,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,6 +82,7 @@ flutter:
     - assets/splash_screen/
     - assets/app_logo/
     - assets/homepage/sign_in_button_logo/
+    - assets/appbar_back/
 
   #   - images/a_dot_ham.jpeg
 

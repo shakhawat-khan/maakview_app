@@ -1,8 +1,9 @@
+
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:maakview_app/view/otp/otp_verification.dart';
+import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
 
 class MyApp extends StatefulWidget {
@@ -28,8 +29,15 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
       appBar: AppBar(
         //backgroundColor: Colors.indigo[800],
         toolbarHeight: 148,
+        flexibleSpace:Image(image: AssetImage('assets/appbar_back/new_backlogo.png'),
+
+            fit: BoxFit.none,) ,
+
+
+
         title: Column(
           children: [
+            
             Text(
               'Login/Registration',
               style: GoogleFonts.poppins(
@@ -57,14 +65,7 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                         textStyle: TextStyle(
                             fontSize: 16.0, fontWeight: FontWeight.w500)),
                   ),
-                  Text(
-                    'Didn’t receive a code?',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    )),
-                  ),
+
                 ],
               ),
               SizedBox(
@@ -95,7 +96,7 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                               hintText: 'Phone Number',
                             ),
                             validator: (value) {
-                              if (value == null || value.length < 10) {
+                              if (value == null || value.length < 11) {
                                 phoneNumber = value!;
                                 //print('hello');
                                 return 'Enter at least 10 digits';
@@ -116,46 +117,54 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                 ),
               ),
               SizedBox(height: 10),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.indigo,
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'I agree to the',
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                        )),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Condition()));
-                        },
-                        child: Text(
-                          ' terms & condition',
+              InkWell(
+                onTap: (){
+                  setState(() {
+                    isChecked = true;
+                  });
+                },
+
+                child: Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.indigo,
+                      value: isChecked,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          isChecked = value!;
+                        });
+                      },
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'I agree to the',
                           style: GoogleFonts.poppins(
                               textStyle: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  decoration: TextDecoration.underline,
-                                  decorationThickness: 2)),
+                            fontSize: 12,
+                            color: Colors.black,
+                          )),
                         ),
-                      )
-                    ],
-                  )
-                ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Condition()));
+                          },
+                          child: Text(
+                            ' terms & condition',
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    decoration: TextDecoration.underline,
+                                    decorationThickness: 2)),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
               SizedBox(
                 height: 24,
