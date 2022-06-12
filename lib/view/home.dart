@@ -16,6 +16,7 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
   String password = '';
   bool isChecked = false;
   String phoneNumber = '';
+  bool wait = false;
 
 
   final Color facebookColor = const Color(0xff39579A);
@@ -32,8 +33,6 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
         flexibleSpace:Image(image: AssetImage('assets/appbar_back/new_backlogo.png'),
 
             fit: BoxFit.none,) ,
-
-
 
         title: Column(
           children: [

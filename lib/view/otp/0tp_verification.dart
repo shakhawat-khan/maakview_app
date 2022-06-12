@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,8 +16,10 @@ class Otp extends StatefulWidget {
 }
 
 class _OtpState extends State<Otp> {
+  int start = 30;
   Color border = Colors.black;
   int counterOtp=0;
+  bool wait = true;
   TextEditingController _controller1 = TextEditingController();
   final fieldText1 = TextEditingController();
   final fieldText2 = TextEditingController();
@@ -29,7 +33,37 @@ class _OtpState extends State<Otp> {
     fieldText4.clear();
   }
 
+  void startTimer()
+  {
+    const onsec = Duration(seconds: 1);
+    Timer timer = Timer.periodic(onsec, (timer) {
+      if(start==0){
 
+        setState(() {
+          timer.cancel();
+          wait = false;
+
+        });
+
+      }else{
+        setState(() {
+          start--;
+        });
+      }
+    });
+
+  }
+
+
+
+  @override
+  void initState() {
+
+    startTimer();
+
+    super.initState();
+
+  }
 
 
   final formKey = GlobalKey<FormState>();
@@ -120,7 +154,37 @@ class _OtpState extends State<Otp> {
 
             ),
 
-            SizedBox(height: 20,),
+            SizedBox(height: 10,),
+
+
+            RichText(text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Wait for  ',
+                  style: TextStyle(
+                    fontSize: 16,
+                      color: Colors.grey
+                  ),
+
+                ),
+                TextSpan(
+                  text: '00:$start',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.red
+                  ),
+
+                ),
+                TextSpan(
+                  text: ' sec',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey
+                  ),
+
+                ),
+              ]
+            )),
 
 
 
@@ -131,7 +195,7 @@ class _OtpState extends State<Otp> {
                   print(counterOtp);
 
                   Fluttertoast.showToast(msg: counterOtp==4? 'correct': 'Incorrect, please try again' ,
-                  gravity: ToastGravity.CENTER,
+                    gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 2,
                     backgroundColor: Colors.grey,
 
@@ -145,7 +209,42 @@ class _OtpState extends State<Otp> {
 
 
                 },
-                child: Text('Check OTP') )
+                child: Text( 'Check OTP') ),
+
+
+            SizedBox(height: 10,),
+
+
+            Container(
+                child: wait? //check if loading is true or false
+                Container(
+                  child: Text(''),
+                )  : //show progress on loading = true
+                InkWell(
+                  onTap: (){
+                    //Navigator.pop(context);
+                    setState(() {
+                      start=30;
+                      startTimer();
+                    });
+                  },
+                  child: Text(
+                    'Resend Code',
+                    style: GoogleFonts.poppins(
+                        textStyle:
+                        TextStyle(fontSize: 10.0,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey,
+                            decoration: TextDecoration.underline,
+                            decorationThickness: 3
+
+                        )
+                    ),
+                  ),
+                ), //show this text on loading = false
+            ),
+
+
 
           ]
         ));
