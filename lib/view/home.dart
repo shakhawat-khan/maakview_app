@@ -159,7 +159,9 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                                     decoration: TextDecoration.underline,
                                     decorationThickness: 2)),
                           ),
-                        )
+                        ),
+
+                        Text(' of Maakview'),
                       ],
                     )
                   ],

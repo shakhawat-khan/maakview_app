@@ -226,6 +226,8 @@ class _OtpState extends State<Otp> {
                     setState(() {
                       start=30;
                       startTimer();
+                      wait = true;
+
                     });
                   },
                   child: Text(
@@ -234,7 +236,7 @@ class _OtpState extends State<Otp> {
                         textStyle:
                         TextStyle(fontSize: 10.0,
                             fontWeight: FontWeight.w600,
-                            color: Colors.grey,
+                            color: Colors.green,
                             decoration: TextDecoration.underline,
                             decorationThickness: 3
 
