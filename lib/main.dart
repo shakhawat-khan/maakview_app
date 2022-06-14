@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maakview_app/routes/routes.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 
 import 'view/home.dart';
@@ -14,7 +15,8 @@ void main() {
       ),
     ),
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+    initialRoute: RouteManager.onBoard,
+    onGenerateRoute: RouteManager.generateRoute,
 
   ));
 }

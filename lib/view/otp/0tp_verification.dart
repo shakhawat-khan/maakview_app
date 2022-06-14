@@ -65,6 +65,13 @@ class _OtpState extends State<Otp> {
 
   }
 
+  @override
+  void dispose() {
+    startTimer();
+
+    super.dispose();
+  }
+
 
   final formKey = GlobalKey<FormState>();
 

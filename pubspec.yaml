@@ -83,6 +83,7 @@ flutter:
     - assets/app_logo/
     - assets/homepage/sign_in_button_logo/
     - assets/appbar_back/
+    - assets/onBoarding_screen/
 
   #   - images/a_dot_ham.jpeg
 

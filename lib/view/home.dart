@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
+import '../routes/routes.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -126,7 +127,7 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                 child: Row(
                   children: [
                     Checkbox(
-                      checkColor: Colors.indigo,
+                      checkColor: Colors.black,
                       value: isChecked,
                       onChanged: (bool? value) {
                         setState(() {
@@ -146,8 +147,11 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Condition()));
+                            /*Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Condition()));*/
+
+                            Navigator.of(context).pushNamed(RouteManager.terms);
+
                           },
                           child: Text(
                             ' terms & condition',
@@ -181,9 +185,14 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                       //print('error');
                     } else {
                       //phoneNumber = value!;
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Otp(number: phoneNumber)));
-                      print(phoneNumber);
+                      //Navigator.of(context).push(MaterialPageRoute(
+                        //  builder: (context) => Otp(number: phoneNumber)));
+                      //print(phoneNumber);
+                      Navigator.of(context).pushNamed(RouteManager.otpPage,arguments:
+
+                          {'number': phoneNumber}
+
+                      );
                     }
                   },
                   child: Text(
