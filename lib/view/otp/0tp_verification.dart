@@ -5,6 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../routes/routes.dart';
+import 'lib/routes/routes.dart';
+
 class Otp extends StatefulWidget {
   String number;
 
@@ -79,6 +82,9 @@ class _OtpState extends State<Otp> {
 
   @override
   Widget build(BuildContext context) {
+
+    //print('hello');
+
     return Scaffold(
         appBar: AppBar(
           //backgroundColor: Colors.indigo[800],
@@ -118,7 +124,7 @@ class _OtpState extends State<Otp> {
               ),
             ),
             Text(
-              widget.number,
+              '+880'+widget.number,
               style: GoogleFonts.poppins(
                 textStyle:
                     TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800),
@@ -199,9 +205,10 @@ class _OtpState extends State<Otp> {
 
             ElevatedButton(
                 onPressed: (){
-                  print(counterOtp);
+                  //print(counterOtp);
 
-                  Fluttertoast.showToast(msg: counterOtp==4? 'correct': 'Incorrect, please try again' ,
+
+                 /* Fluttertoast.showToast(msg: counterOtp==4? 'correct': 'Incorrect, please try again' ,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 2,
                     backgroundColor: Colors.grey,
@@ -212,7 +219,32 @@ class _OtpState extends State<Otp> {
                     counterOtp = 0;
                   });
 
-                  cleanText();
+                  cleanText();*/
+
+                  if(counterOtp==4){
+                    Fluttertoast.showToast(msg: 'correct' ,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 2,
+                    backgroundColor: Colors.grey);
+                    setState(() {
+                      counterOtp = 0;
+                    });
+                    cleanText();
+
+                    Navigator.of(context).pushNamed(RouteManager.home);
+
+
+
+                  } else{
+                        Fluttertoast.showToast(msg: 'Incorrect' ,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 2,
+                        backgroundColor: Colors.grey);
+                        setState(() {
+                          counterOtp = 0;
+                        });
+                        cleanText();
+                    }
 
 
                 },

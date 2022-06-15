@@ -82,7 +82,11 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                   child: Row(
                     children: [
                       CountryCodePicker(
-                        initialSelection: 'BAN',
+                        initialSelection: '+880',
+                        favorite: ['+880'],
+                        showCountryOnly: true,
+                        showDropDownButton: false,
+
                         showOnlyCountryWhenClosed: false,
                       ),
                       Flexible(
@@ -96,7 +100,7 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                               hintText: 'Phone Number',
                             ),
                             validator: (value) {
-                              if (value == null || value.length < 11) {
+                              if (value == null || value.length < 9) {
                                 phoneNumber = value!;
                                 //print('hello');
                                 return 'Enter at least 10 digits';

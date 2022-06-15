@@ -66,7 +66,7 @@ class OnBoard extends StatelessWidget {
                   style: ElevatedButton.styleFrom(primary: Colors.indigo[900]),
                   onPressed: () {
 
-                    Navigator.of(context).pushNamed(RouteManager.homePage);
+                    Navigator.of(context).pushNamed(RouteManager.logIn);
 
                   },
                   child: Text(

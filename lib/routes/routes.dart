@@ -1,7 +1,8 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:maakview_app/view/home.dart';
+import 'package:maakview_app/view/home/home_screen.dart';
+import 'package:maakview_app/view/login.dart';
 import 'package:maakview_app/view/onBording.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
@@ -9,11 +10,11 @@ import 'package:maakview_app/view/term_and_condition.dart';
 class RouteManager{
 
 
-  static const String homePage = '/home';
+  static const String logIn = '/login';
   static const String otpPage= '/otpPage';
   static const String terms = '/terms';
   static const String onBoard = '/';
-
+  static const String home = '/home_screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings){
 
@@ -41,9 +42,13 @@ class RouteManager{
           return Condition();
         });
 
-        case homePage:
+        case logIn:
           return MaterialPageRoute(builder: (context){
             return MyApp();
+          });
+        case home:
+          return MaterialPageRoute(builder: (context){
+            return Home();
           });
 
       default:

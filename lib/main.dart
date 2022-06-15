@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maakview_app/routes/routes.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 
-import 'view/home.dart';
+import 'view/login.dart';
 
 void main() {
   const color1 = const Color(0xffb74093);
@@ -15,7 +15,7 @@ void main() {
       ),
     ),
     debugShowCheckedModeBanner: false,
-    initialRoute: RouteManager.onBoard,
+    initialRoute: RouteManager.home,
     onGenerateRoute: RouteManager.generateRoute,
 
   ));
