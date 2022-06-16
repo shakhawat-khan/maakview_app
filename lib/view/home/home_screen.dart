@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../controller/home_slider/home_banner_data.dart';
 
 
 class Home extends StatelessWidget {
@@ -61,25 +62,33 @@ class Home extends StatelessWidget {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
+        padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 15.0),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
 
-            Container(
-              height: 50,
-              child: CupertinoSearchTextField(
-                //backgroundColor: Colors.grey,
+              Container(
+                height: 50,
+                child: CupertinoSearchTextField(
+                  //backgroundColor: Colors.grey,
 
-                borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10),
 
 
+                ),
               ),
-            ),
+
+              SizedBox(height: 20,),
+
+
+              SlideShowData(),
 
 
 
 
-          ],
+            ],
+          ),
         ),
       ),
 
