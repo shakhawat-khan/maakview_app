@@ -2,13 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../controller/home_slider/home_banner_data.dart';
+import '../bottom_navBar/bottom_nav.dart';
 
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
   Widget build(BuildContext context) {
+    int selectedIndex = 0;
     return Scaffold(
       endDrawer: Drawer(
         //backgroundColor: Colors.black,
@@ -84,13 +91,31 @@ class Home extends StatelessWidget {
 
               SlideShowData(),
 
-
-
-
             ],
           ),
         ),
       ),
+
+      bottomNavigationBar: BottomNav()
+
+
+      /*BottomNavigationBar(
+        backgroundColor: Colors.grey,
+        onTap:(index)=> setState(() {
+          selectedIndex = index;
+        }) ,
+        selectedItemColor: Colors.amber[800],
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home,),label: 'Home',),
+          BottomNavigationBarItem(icon: Icon(Icons.category),label: 'Category',),
+          BottomNavigationBarItem(icon: Icon(Icons.add),label: 'My Shop',),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: 'Orders',),
+          BottomNavigationBarItem(icon: Icon(Icons.payment_outlined),label: 'Payments',),
+
+        ],
+        currentIndex: selectedIndex,
+
+      ),*/
 
     );
   }
