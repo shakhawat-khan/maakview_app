@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http ;
-import '../../model/home_banner.dart';
+import '../../model/home/home_banner.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 

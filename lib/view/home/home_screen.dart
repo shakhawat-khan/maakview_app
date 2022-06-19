@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../controller/home/home_banner_data.dart';
 import '../../controller/home_slider/home_banner_data.dart';
 import '../bottom_navBar/bottom_nav.dart';
 
@@ -91,19 +93,43 @@ class _HomeState extends State<Home> {
 
               SlideShowData(),
 
+
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Popular Categories',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(fontSize: 16),
+                        fontWeight: FontWeight.w500),
+              ),
+
+                  RawMaterialButton(
+                    onPressed: () {
+
+                    },
+                    child: Text(
+                      'View All >',
+                      style: TextStyle(color: Colors.indigo),
+                    ),
+                  ),
+                ],
+              ),
+
             ],
           ),
         ),
       ),
 
-      bottomNavigationBar: BottomNav()
+      /*bottomNavigationBar: BottomNavigationBar(
 
-
-      /*BottomNavigationBar(
         backgroundColor: Colors.grey,
         onTap:(index)=> setState(() {
           selectedIndex = index;
+          print(index);
         }) ,
+        currentIndex: selectedIndex,
         selectedItemColor: Colors.amber[800],
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home,),label: 'Home',),
@@ -113,7 +139,7 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(icon: Icon(Icons.payment_outlined),label: 'Payments',),
 
         ],
-        currentIndex: selectedIndex,
+
 
       ),*/
 
