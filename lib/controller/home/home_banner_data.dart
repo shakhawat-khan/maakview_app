@@ -40,6 +40,8 @@ class _SlideShowDataState extends State<SlideShowData> {
         builder: (context, snapshot) {
           final bannerModel = snapshot.data;
 
+
+
           if (snapshot.hasData) {
             return buildSlider(bannerModel!);
           } else if (snapshot.hasError) {

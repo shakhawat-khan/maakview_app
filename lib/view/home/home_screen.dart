@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../controller/home/home_banner_data.dart';
-import '../../controller/home_slider/home_banner_data.dart';
+//import '../../controller/home_slider/home_banner_data.dart';
 import '../bottom_navBar/bottom_nav.dart';
+
+import '../../controller/home/popular_categories_data.dart';
 
 
 class Home extends StatefulWidget {
@@ -116,6 +118,22 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
+
+
+
+              //PopularCategoriesData(),
+
+              SvgPicture.network(
+                'https://upload.wikimedia.org/wikipedia/commons/b/b4/Chess_ndd45.svg',
+                placeholderBuilder: (BuildContext context) => Container(
+                    padding: const EdgeInsets.all(30.0),
+                    child: const CircularProgressIndicator()),
+              ),
+
+            SvgPicture.network(
+              'https://www.maakview.com/public/uploads/all/sBhnYzTqepTFjKrnhZoRw6vLoNCH5gZwdrFyLkAc.svg',
+
+            ),
 
             ],
           ),
