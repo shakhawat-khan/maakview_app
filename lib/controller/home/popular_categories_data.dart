@@ -17,7 +17,28 @@ class PopularCategoriesData extends StatefulWidget {
   State<PopularCategoriesData> createState() => _PopularCategoriesDataState();
 }
 
+
+
 class _PopularCategoriesDataState extends State<PopularCategoriesData> {
+
+  final ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+    
+    super.initState();
+    
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) { 
+      double minScroll = _controller.position.minScrollExtent;
+      double maxScroll = _controller.position.maxScrollExtent;
+      
+      _controller.animateTo(maxScroll, duration: Duration(seconds: 25), curve: Curves.linear);
+      
+    });
+
+  }
+
+
 
   Future<AllCategorieSlideModel> getCategorie () async {
     http.Response response;
@@ -44,7 +65,7 @@ class _PopularCategoriesDataState extends State<PopularCategoriesData> {
 
           //print(snapshot.data);
 
-          if(snapshot.hasError){
+          if(snapshot.hasData){
             print('i am here');
             return buildCategorieSlide(all_categories_slide_model!);
 
@@ -57,30 +78,65 @@ class _PopularCategoriesDataState extends State<PopularCategoriesData> {
     );
   }
 
-  Widget buildCategorieSlide(AllCategorieSlideModel allCategorieSlideModel){
+ /* Widget buildCategorieSlide(AllCategorieSlideModel allCategorieSlideModel){
     return CarouselSlider.builder(
         itemCount: allCategorieSlideModel.data.data.length,
         itemBuilder:(BuildContext context, int itemIndex , int pageViewIndex){
           final data = allCategorieSlideModel.data.data[itemIndex];
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: SvgPicture.network(
-              data.banner
+          return Card(
+            elevation: 8,
+            child: Image.network(
+                data.banner
             ),
           );
+
+          *//*ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              data.banner
+            ),
+          );*//*
         } ,
         options: CarouselOptions(
-          height:50,
-          enlargeCenterPage: true,
+          height:100,
+          //enlargeCenterPage: true,
           autoPlay:  true,
           autoPlayAnimationDuration: Duration(microseconds: 800),
-          viewportFraction: 1,
+          viewportFraction: .15,
+          enableInfiniteScroll: true
+
+
 
 
         )
 
     );
   }
+*/
 
+  Widget buildCategorieSlide(AllCategorieSlideModel allCategorieSlideModel) {
+    return Container(
+      height: 120,
+      child: ListView.builder(
+        controller: _controller,
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: allCategorieSlideModel.data.data.length,
+          itemBuilder: (context,index){
+            final data = allCategorieSlideModel.data.data[index];
+          return Card(
+            elevation: 5,
+            child: Container(
+              child: Image.network(data.banner,width: 100,fit: BoxFit.fitHeight,) ,
+            ),
+          );
+          }
+
+      ) ,
+    );
+
+  }
 
 }
+
+

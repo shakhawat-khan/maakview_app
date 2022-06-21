@@ -121,19 +121,35 @@ class _HomeState extends State<Home> {
 
 
 
-              //PopularCategoriesData(),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                  child: PopularCategoriesData()
+              ),
 
-              SvgPicture.network(
+             /* SvgPicture.network(
                 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Chess_ndd45.svg',
                 placeholderBuilder: (BuildContext context) => Container(
                     padding: const EdgeInsets.all(30.0),
                     child: const CircularProgressIndicator()),
+              ),*/
+
+              Row(
+                children: [
+                  Text(
+                    'Most Popular',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(fontSize: 16),
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
               ),
 
-            SvgPicture.network(
-              'https://www.maakview.com/public/uploads/all/sBhnYzTqepTFjKrnhZoRw6vLoNCH5gZwdrFyLkAc.svg',
 
-            ),
+
+
+
+
+
 
             ],
           ),
