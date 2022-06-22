@@ -47,8 +47,36 @@ class _MostPopularDataState extends State<MostPopularData> {
   }
 
   Widget buildMostPopularItem(MostPopularModel mostPopularModel){
-    return Card(
-      child: Text('hello'),
+    return Container(
+      child: ListView.builder(
+          itemBuilder: (context,index){
+            final data = mostPopularModel.data.products.data[index];
+
+            return Container(
+              height: 250,
+              width: 150,
+              child: InkWell(
+                onTap: (){
+
+                },
+                child: Card(
+                  elevation: 5,
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Image.network(
+                          data.thumbnailImage,fit: BoxFit.cover,
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            );
+
+          }
+      ),
     );
   }
 

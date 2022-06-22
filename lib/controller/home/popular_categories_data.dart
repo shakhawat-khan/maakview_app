@@ -8,6 +8,8 @@ import '../../model/home/all_categories_slider_model.dart';
 
 import 'package:http/http.dart' as http ;
 
+import 'package:marquee_widget/marquee_widget.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 
 class PopularCategoriesData extends StatefulWidget {
@@ -124,19 +126,38 @@ class _PopularCategoriesDataState extends State<PopularCategoriesData> {
           itemCount: allCategorieSlideModel.data.data.length,
           itemBuilder: (context,index){
             final data = allCategorieSlideModel.data.data[index];
-          return Card(
-            elevation: 5,
-            child: Container(
-              child: Image.network(data.banner,width: 100,fit: BoxFit.fitHeight,) ,
+          return Container(
+            height: 180,
+            width: 100,
+            child: InkWell(
+              onTap: (){
+
+              },
+              child: Card(
+                elevation: 5,
+                child: Column(
+                  children: [
+                    Container(
+                      child: Image.network(
+                          data.banner,height: 80,width: 70,
+                      ),
+                    ),
+
+                    Text(data.name,style: TextStyle(fontSize: 10,fontWeight: FontWeight.w600),)
+                    //Text(data.name)
+                  ],
+                ),
+              ),
             ),
           );
           }
-
       ) ,
     );
 
   }
 
 }
+
+
 
 

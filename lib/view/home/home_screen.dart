@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maakview_app/controller/home/most_popular_data.dart';
+import 'package:marquee_widget/marquee_widget.dart';
 import '../../controller/home/home_banner_data.dart';
 //import '../../controller/home_slider/home_banner_data.dart';
 import '../bottom_navBar/bottom_nav.dart';
@@ -121,10 +123,7 @@ class _HomeState extends State<Home> {
 
 
 
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                  child: PopularCategoriesData()
-              ),
+              PopularCategoriesData(),
 
              /* SvgPicture.network(
                 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Chess_ndd45.svg',
@@ -144,10 +143,11 @@ class _HomeState extends State<Home> {
                 ],
               ),
 
-
-
-
-
+              Row(
+                children: [
+                  MostPopularData(),
+                ],
+              )
 
 
 
