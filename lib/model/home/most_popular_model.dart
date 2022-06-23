@@ -73,7 +73,7 @@ class Datum {
     required this.basePrice,
     required this.baseDiscountedPrice,
     required this.stock,
-    this.unit,
+    required this.unit,
     required this.minQty,
     required this.maxQty,
     required this.rating,
@@ -132,11 +132,11 @@ class Variation {
   Variation({
     required this.id,
     required this.productId,
-    this.code,
-    this.sku,
+    required this.code,
+    required this.sku,
     required this.price,
     required this.stock,
-    this.img,
+    required this.img,
     required this.createdAt,
     required this.updatedAt,
   });

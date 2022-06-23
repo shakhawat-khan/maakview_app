@@ -76,82 +76,83 @@ class _HomeState extends State<Home> {
 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 15.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
 
-              Container(
-                height: 50,
-                child: CupertinoSearchTextField(
-                  //backgroundColor: Colors.grey,
+                Container(
+                  height: 50,
+                  child: CupertinoSearchTextField(
+                    //backgroundColor: Colors.grey,
 
-                  borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10),
 
 
+                  ),
                 ),
-              ),
 
-              SizedBox(height: 20,),
-
-
-              SlideShowData(),
+                SizedBox(height: 20,),
 
 
-              SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Popular Categories',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontSize: 16),
-                        fontWeight: FontWeight.w500),
-              ),
+                SlideShowData(),
 
-                  RawMaterialButton(
-                    onPressed: () {
 
-                    },
-                    child: Text(
-                      'View All >',
-                      style: TextStyle(color: Colors.indigo),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Popular Categories',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(fontSize: 16),
+                          fontWeight: FontWeight.w500),
+                ),
+
+                    RawMaterialButton(
+                      onPressed: () {
+
+                      },
+                      child: Text(
+                        'View All >',
+                        style: TextStyle(color: Colors.indigo),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
 
 
 
-              PopularCategoriesData(),
+                PopularCategoriesData(),
+                //MostPopularData(),
 
-             /* SvgPicture.network(
-                'https://upload.wikimedia.org/wikipedia/commons/b/b4/Chess_ndd45.svg',
-                placeholderBuilder: (BuildContext context) => Container(
-                    padding: const EdgeInsets.all(30.0),
-                    child: const CircularProgressIndicator()),
-              ),*/
+               /* SvgPicture.network(
+                  'https://upload.wikimedia.org/wikipedia/commons/b/b4/Chess_ndd45.svg',
+                  placeholderBuilder: (BuildContext context) => Container(
+                      padding: const EdgeInsets.all(30.0),
+                      child: const CircularProgressIndicator()),
+                ),*/
 
-              Row(
-                children: [
-                  Text(
-                    'Most Popular',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontSize: 16),
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
+                Row(
+                  children: [
+                    Text(
+                      'Most Popular',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(fontSize: 16),
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
 
-              Row(
-                children: [
-                  MostPopularData(),
-                ],
-              )
+                MostPopularData(),
 
 
 
-            ],
+                Text('data'),
+
+            ]
           ),
         ),
       ),
@@ -176,7 +177,7 @@ class _HomeState extends State<Home> {
 
 
       ),*/
-
+    )
     );
   }
 }

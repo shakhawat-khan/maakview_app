@@ -25,22 +25,6 @@ class _PopularCategoriesDataState extends State<PopularCategoriesData> {
 
   final ScrollController _controller = ScrollController();
 
-  @override
-  void initState() {
-    
-    super.initState();
-    
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) { 
-      double minScroll = _controller.position.minScrollExtent;
-      double maxScroll = _controller.position.maxScrollExtent;
-      
-      _controller.animateTo(maxScroll, duration: Duration(seconds: 25), curve: Curves.linear);
-      
-    });
-
-  }
-
-
 
   Future<AllCategorieSlideModel> getCategorie () async {
     http.Response response;
@@ -48,7 +32,7 @@ class _PopularCategoriesDataState extends State<PopularCategoriesData> {
     response = await http.get(Uri.parse('https://www.maakview.com/api/v1/setting/home/popular_categories'));
 
     if(response.statusCode==200){
-      print('okay');
+      //print('okay');
       return AllCategorieSlideModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception(('Failed to load'));
@@ -68,7 +52,7 @@ class _PopularCategoriesDataState extends State<PopularCategoriesData> {
           //print(snapshot.data);
 
           if(snapshot.hasData){
-            print('i am here');
+            //print('i am here');
             return buildCategorieSlide(all_categories_slide_model!);
 
           } else if(snapshot.hasError){
