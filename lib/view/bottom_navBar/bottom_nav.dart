@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:maakview_app/view/category/categories.dart';
 import 'package:maakview_app/view/my_shop/my_shop.dart';
@@ -37,7 +38,7 @@ class _BottomNavState extends State<BottomNav> {
 
       body:_widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -51,7 +52,13 @@ class _BottomNavState extends State<BottomNav> {
             label: 'My Shop',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Badge(
+                badgeContent: Text('0',style: TextStyle(color: Colors.white),),
+                animationDuration: Duration(milliseconds: 300),
+                child: Icon(Icons.shopping_cart),
+              borderRadius: BorderRadius.circular(4),
+
+            ),
             label: 'Orders',
           ),
           BottomNavigationBarItem(

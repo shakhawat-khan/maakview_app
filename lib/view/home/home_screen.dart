@@ -8,7 +8,9 @@ import '../../controller/home/home_banner_data.dart';
 //import '../../controller/home_slider/home_banner_data.dart';
 import '../bottom_navBar/bottom_nav.dart';
 
-import '../../controller/home/popular_categories_data.dart';
+import '../../controller/home/all_categories_slider_data.dart';
+
+import '../../controller/home/most_popular_banner_data.dart';
 
 
 class Home extends StatefulWidget {
@@ -147,6 +149,10 @@ class _HomeState extends State<Home> {
                 ),
 
                 MostPopularData(),
+
+                SizedBox(height: 15,),
+
+                MostPopularBannerData(),
 
 
 
