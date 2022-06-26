@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:maakview_app/view/category/categories.dart';
 import 'package:maakview_app/view/my_shop/my_shop.dart';
 import 'package:maakview_app/view/orders/orders.dart';
+import 'package:provider/provider.dart';
 import '../home/home_screen.dart';
 import '../payment/payment.dart';
+import '../../provider/add_cart.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
    List<Widget> _widgetOptions = <Widget>[
     Home(),
      Categories(),
@@ -52,11 +55,17 @@ class _BottomNavState extends State<BottomNav> {
             label: 'My Shop',
           ),
           BottomNavigationBarItem(
-            icon: Badge(
-                badgeContent: Text('0',style: TextStyle(color: Colors.white),),
-                animationDuration: Duration(milliseconds: 300),
-                child: Icon(Icons.shopping_cart),
-              borderRadius: BorderRadius.circular(4),
+            icon: Consumer<CartProvider>(
+              builder: (context,value,child){
+                return Badge(
+                  badgeContent: Text(value.counter.toString(),style: TextStyle(color: Colors.white),),
+                  position: BadgePosition.topEnd(end: -10,top: -20),
+                  animationDuration: Duration(milliseconds: 300),
+                  child: Icon(Icons.shopping_cart),
+                  borderRadius: BorderRadius.circular(4),
+
+                );
+              },
 
             ),
             label: 'Orders',

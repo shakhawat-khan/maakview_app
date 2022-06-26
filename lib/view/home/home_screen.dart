@@ -155,7 +155,6 @@ class _HomeState extends State<Home> {
                 MostPopularBannerData(),
 
 
-
                 Text('data'),
 
             ]

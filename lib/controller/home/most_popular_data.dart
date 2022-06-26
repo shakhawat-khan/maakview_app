@@ -3,9 +3,12 @@ import 'dart:js';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http ;
+import 'package:provider/provider.dart';
 
 import '../../model/home/most_popular_model.dart';
 import 'package:like_button/like_button.dart';
+
+import '../../provider/add_cart.dart';
 
 class MostPopularData extends StatelessWidget {
 
@@ -26,6 +29,8 @@ class MostPopularData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //dynamic cart = Provider.of<CartProvider>(context);
 
 
     return Container(
@@ -49,6 +54,7 @@ class MostPopularData extends StatelessWidget {
 
   Widget buildMostPopular(MostPopularModel mostPopularModel){
     final oCcy = new NumberFormat("#,##0.00", "en_US");
+
 
     return Container(
       height: 250,
@@ -94,14 +100,24 @@ class MostPopularData extends StatelessWidget {
                       //SizedBox(height: 10,),
                       Spacer(),
                       Container(height: 20,width: 102,
-                        child: ElevatedButton(onPressed: (){},
-                          child: Row(
-                          children: [
-                            Icon(Icons.shopping_cart,size: 18,),
-                            Text('Add to cart',style: TextStyle(fontSize: 10),),
-                          ],
-                        ),
-                        ),
+                        child: Consumer<CartProvider>(
+                          builder: (context,value,child){
+                            return ElevatedButton(onPressed: (){
+
+                              context.read<CartProvider>().addCounter();
+                              //print('hello');
+                              //print(value.counter);
+
+                            },
+                              child: Row(
+                                children: [
+                                  Icon(Icons.shopping_cart,size: 18,),
+                                  Text('Add to cart',style: TextStyle(fontSize: 10),),
+                                ],
+                              ),
+                            );
+                          },
+                        )
                       ),
                     ],
                   ),
