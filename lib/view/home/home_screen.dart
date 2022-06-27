@@ -6,6 +6,7 @@ import 'package:maakview_app/controller/home/most_popular_data.dart';
 import 'package:marquee_widget/marquee_widget.dart';
 import '../../controller/home/home_banner_data.dart';
 //import '../../controller/home_slider/home_banner_data.dart';
+import '../../routes/routes.dart';
 import '../bottom_navBar/bottom_nav.dart';
 
 import '../../controller/home/all_categories_slider_data.dart';
@@ -115,6 +116,7 @@ class _HomeState extends State<Home> {
 
                     RawMaterialButton(
                       onPressed: () {
+                        Navigator.of(context).pushNamed(RouteManager.view_all_categories);
 
                       },
                       child: Text(

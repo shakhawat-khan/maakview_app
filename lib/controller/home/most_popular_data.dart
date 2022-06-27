@@ -66,22 +66,103 @@ class MostPopularData extends StatelessWidget {
           itemCount: mostPopularModel.data.products.data.length,
           itemBuilder: (context,index){
           final data = mostPopularModel.data.products.data[index];
+          final discount1 = (data.baseDiscountedPrice/data.basePrice)*100 ;
+          final discount = (100-discount1).ceil();
 
-          return InkWell(
-            onTap: (){
+          return Container(
+            child: data.basePrice==data.baseDiscountedPrice? InkWell(
+              onTap: (){
 
-            },
-            child: Container(
+              },
+              child: Container(
 
-              width: 150,
+                width: 150,
 
-              child: Card(
-                elevation: 5,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                child: Card(
+                  elevation: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                    child: Column(
+                      children: [
+                        Image.network(data.thumbnailImage,fit: BoxFit.fitWidth,),
+                        Row(
+                          children: [
+
+                            Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                            Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                            //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                            Spacer(),
+                            LikeButton(size: 18,)
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        SizedBox(
+                            height: 30,
+                            child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
+                        ),
+                        //SizedBox(height: 10,),
+                        Spacer(),
+                        Container(height: 20,width: 102,
+                          child: Consumer<CartProvider>(
+                            builder: (context,value,child){
+                              return ElevatedButton(onPressed: (){
+
+                                context.read<CartProvider>().addCounter();
+                                //print('hello');
+                                //print(value.counter);
+
+                              },
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.shopping_cart,size: 18,),
+                                    Text('Add to cart',style: TextStyle(fontSize: 10),),
+                                  ],
+                                ),
+                              );
+                            },
+                          )
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
+            : InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+
+                width: 150,
+
+                child: Card(
+                  elevation: 5,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(data.thumbnailImage,fit: BoxFit.fitWidth,),
+                      Stack(
+                        //mainAxisAlignment: MainAxisAlignment.start,
+                        //alignment: Alignment.topLeft,
+                         children: [
+
+                          Container(
+                            height: 20,
+                            width: 40,
+                            color: Colors.red,
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'OFF ${discount} %',
+                                style: TextStyle(color: Colors.white,fontSize: 8),
+                              ),
+                            ),
+                          ),
+
+                        Image.network(data.thumbnailImage,height: 140,width: 100,),
+
+                      ], ),
                       Row(
                         children: [
 
@@ -92,38 +173,44 @@ class MostPopularData extends StatelessWidget {
                           LikeButton(size: 18,)
                         ],
                       ),
-                      SizedBox(height: 10,),
-                      SizedBox(
-                          height: 30,
-                          child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
+                      //SizedBox(height: 10,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                        child: SizedBox(
+                            height: 30,
+                            child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
+                        ),
                       ),
                       //SizedBox(height: 10,),
                       Spacer(),
-                      Container(height: 20,width: 102,
-                        child: Consumer<CartProvider>(
-                          builder: (context,value,child){
-                            return ElevatedButton(onPressed: (){
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Container(height: 20,width: 102,
+                            child: Consumer<CartProvider>(
+                              builder: (context,value,child){
+                                return ElevatedButton(onPressed: (){
 
-                              context.read<CartProvider>().addCounter();
-                              //print('hello');
-                              //print(value.counter);
+                                  context.read<CartProvider>().addCounter();
+                                  //print('hello');
+                                  //print(value.counter);
 
-                            },
-                              child: Row(
-                                children: [
-                                  Icon(Icons.shopping_cart,size: 18,),
-                                  Text('Add to cart',style: TextStyle(fontSize: 10),),
-                                ],
-                              ),
-                            );
-                          },
-                        )
+                                },
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.shopping_cart,size: 18,),
+                                      Text('Add to cart',style: TextStyle(fontSize: 10),),
+                                    ],
+                                  ),
+                                );
+                              },
+                            )
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
+            ) ,
           );
 
           }

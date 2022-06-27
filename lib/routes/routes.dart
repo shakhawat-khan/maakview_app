@@ -8,6 +8,8 @@ import 'package:maakview_app/view/onBording.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
 
+import '../controller/home/view_all_categories.dart';
+
 
 
 class RouteManager  {
@@ -17,6 +19,8 @@ class RouteManager  {
   static const String onBoard = '/';
   static const String home = '/home_screen';
   static const String bottom_nav = '/bottom-nav';
+  static const String view_all_categories = '/view_all_categories';
+
 
 
   static Route<dynamic> generateRoute(RouteSettings settings){
@@ -49,10 +53,18 @@ class RouteManager  {
         return MaterialPageRoute(builder: (context){
           return MyApp();
         });
+
+      case view_all_categories:
+        return MaterialPageRoute(builder: (context){
+          return ViewAllCategories();
+        });
+
       case home:
         return MaterialPageRoute(builder: (context){
           return BottomNav();
         });
+
+
 
       default:
         throw FormatException('Route not found! Check routes again!');
