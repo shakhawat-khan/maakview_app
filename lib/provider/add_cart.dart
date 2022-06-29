@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../view/orders/cart_view.dart';
 
 class CartProvider with ChangeNotifier {
+
 
 
   int _counter = 0;
@@ -8,6 +10,7 @@ class CartProvider with ChangeNotifier {
 
   double _totalPrice = 0.0;
   double get totalPrice => _totalPrice;
+  final List<String> order_view = [];
 
 
   void addCounter(){
@@ -21,6 +24,19 @@ class CartProvider with ChangeNotifier {
     _counter--;
     notifyListeners();
   }
+
+  //final name = List<String>;
+
+
+  void addName(String data,){
+
+    order_view.add(data);
+    notifyListeners();
+  }
+
+
+
+
 
 
 

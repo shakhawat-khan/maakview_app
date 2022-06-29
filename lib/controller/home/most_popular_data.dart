@@ -108,8 +108,12 @@ class MostPopularData extends StatelessWidget {
                               return ElevatedButton(onPressed: (){
 
                                 context.read<CartProvider>().addCounter();
+
                                 //print('hello');
                                 //print(value.counter);
+
+                                context.read<CartProvider>().addName(data.name);
+
 
                               },
                                 child: Row(
@@ -155,21 +159,27 @@ class MostPopularData extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Text(
                                 'OFF ${discount} %',
-                                style: TextStyle(color: Colors.white,fontSize: 8),
+                                style: TextStyle(color: Colors.white,fontSize: 9,fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),
 
-                        Image.network(data.thumbnailImage,height: 140,width: 100,),
+                        Container(
+                            child: Image.network(data.thumbnailImage,height: 140,width: 100,),
+                            alignment: Alignment.center,
+                        ),
 
                       ], ),
                       Row(
                         children: [
 
-                          Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                          ),
                           Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                          Spacer(),
+                          SizedBox(width:25 ,),
                           LikeButton(size: 18,)
                         ],
                       ),
@@ -181,10 +191,11 @@ class MostPopularData extends StatelessWidget {
                             child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
                         ),
                       ),
-                      //SizedBox(height: 10,),
-                      Spacer(),
+
+                      SizedBox(height: 8,),
+
                       Padding(
-                        padding: const EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 20),
                         child: Container(height: 20,width: 102,
                             child: Consumer<CartProvider>(
                               builder: (context,value,child){
@@ -193,6 +204,7 @@ class MostPopularData extends StatelessWidget {
                                   context.read<CartProvider>().addCounter();
                                   //print('hello');
                                   //print(value.counter);
+                                  context.read<CartProvider>().addName(data.name);
 
                                 },
                                   child: Row(
@@ -219,3 +231,5 @@ class MostPopularData extends StatelessWidget {
   }
 
 }
+
+

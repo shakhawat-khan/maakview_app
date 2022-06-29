@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maakview_app/controller/home/most_popular_data.dart';
+import 'package:maakview_app/view/loading_screen/loading_screen.dart';
 import 'package:marquee_widget/marquee_widget.dart';
 import '../../controller/home/home_banner_data.dart';
 //import '../../controller/home_slider/home_banner_data.dart';
@@ -158,6 +159,8 @@ class _HomeState extends State<Home> {
 
 
                 Text('data'),
+
+                //LoadingScreen(),
 
             ]
           ),

@@ -48,7 +48,7 @@ class _ViewAllCategoriesState extends State<ViewAllCategories> {
 
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
 
         elevation: 0,
@@ -63,42 +63,44 @@ class _ViewAllCategoriesState extends State<ViewAllCategories> {
         ),
       ),
 
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+      body: SafeArea(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
 
-              Text(
-                'Categories',
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(fontSize: 16),
-                    fontWeight: FontWeight.w500),
-              ),
-
-              Container(
-                child: FutureBuilder<AllCategorieSlideModel>(
-                  future: getCategorie(),
-                  builder: (context,snapshot){
-                    final all_categories_slide_model = snapshot.data;
-
-                    //print(snapshot.data);
-
-                    if(snapshot.hasData){
-                      //print('i am here');
-                      return buildCategorieSlide(all_categories_slide_model!);
-
-                    } else if(snapshot.hasError){
-                      return Text('${snapshot.error}');
-                    }
-                    return Center(child: const CircularProgressIndicator());
-                  },
+                Text(
+                  'Categories',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(fontSize: 16),
+                      fontWeight: FontWeight.w500),
                 ),
-              ),
-            ],
+
+                Container(
+                  child: FutureBuilder<AllCategorieSlideModel>(
+                    future: getCategorie(),
+                    builder: (context,snapshot){
+                      final all_categories_slide_model = snapshot.data;
+
+                      //print(snapshot.data);
+
+                      if(snapshot.hasData){
+                        //print('i am here');
+                        return buildCategorieSlide(all_categories_slide_model!);
+
+                      } else if(snapshot.hasError){
+                        return Text('${snapshot.error}');
+                      }
+                      return Center(child: const CircularProgressIndicator());
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
