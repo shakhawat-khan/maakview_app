@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:js';
+
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http ;
@@ -57,7 +57,7 @@ class MostPopularData extends StatelessWidget {
 
 
     return Container(
-      height: 250,
+      height: 260,
       width: double.infinity,
       child: ListView.builder(
         controller:  _controller,
@@ -70,6 +70,7 @@ class MostPopularData extends StatelessWidget {
           final discount = (100-discount1).ceil();
 
           return Container(
+
             child: data.basePrice==data.baseDiscountedPrice? InkWell(
               onTap: (){
 
@@ -112,7 +113,8 @@ class MostPopularData extends StatelessWidget {
                                 //print('hello');
                                 //print(value.counter);
 
-                                context.read<CartProvider>().addName(data.name);
+                                context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id);
+
 
 
                               },
@@ -169,7 +171,14 @@ class MostPopularData extends StatelessWidget {
                             alignment: Alignment.center,
                         ),
 
-                      ], ),
+                      ],
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text('৳'+'${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold,color: Colors.grey,decoration: TextDecoration.lineThrough)),
+                      ),
+
                       Row(
                         children: [
 
@@ -177,7 +186,7 @@ class MostPopularData extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           ),
-                          Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                          Text('${oCcy.format(data.baseDiscountedPrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           SizedBox(width:25 ,),
                           LikeButton(size: 18,)
@@ -192,7 +201,7 @@ class MostPopularData extends StatelessWidget {
                         ),
                       ),
 
-                      SizedBox(height: 8,),
+                      SizedBox(height: 3,),
 
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
@@ -204,7 +213,7 @@ class MostPopularData extends StatelessWidget {
                                   context.read<CartProvider>().addCounter();
                                   //print('hello');
                                   //print(value.counter);
-                                  context.read<CartProvider>().addName(data.name);
+                                  context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id);
 
                                 },
                                   child: Row(
