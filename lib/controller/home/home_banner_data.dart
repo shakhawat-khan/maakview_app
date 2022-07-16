@@ -26,6 +26,7 @@ class _SlideShowDataState extends State<SlideShowData> {
         Uri.parse('https://www.maakview.com/api/v1/setting/home/sliders'));
 
     if (response.statusCode == 200) {
+      print(jsonDecode(response.body));
       return BannerModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load');
@@ -40,11 +41,16 @@ class _SlideShowDataState extends State<SlideShowData> {
         builder: (context, snapshot) {
           final bannerModel = snapshot.data;
 
+          //print(snapshot.data);
 
 
-          if (snapshot.hasData) {
+
+          if (snapshot.hasData ) {
+            //print('has data');
             return buildSlider(bannerModel!);
+
           } else if (snapshot.hasError) {
+            //print('has no data');
             return Text('${snapshot.error}');
           }
 

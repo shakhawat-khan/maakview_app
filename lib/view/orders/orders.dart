@@ -30,18 +30,28 @@ class Orders extends StatelessWidget {
                         child: ListTile(
                           leading: Image.network(value.test[index].card_image,width: 50,height: 50,),
                           title: Text(value.test[index].card_name,style: TextStyle(fontSize: 10),),
-                          trailing: Text(value.test[index].card_price.toString()),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(value.test[index].all_price.toString()),
+                              IconButton(onPressed: () {
+                                value.deleteCart(index);
+                              }, icon: const Icon(Icons.delete,color: Colors.red,)),
+                            ],
+                          ),
                           subtitle: Consumer<CartProvider>(
                             builder: (context,value,child){
                               return Row(
                                 children: [
                                   InkWell(
                                       onTap: (){
-                                        
+
+
+
                                         //value.test[index].quantity++;
-
-
-
+                                        //print(value.test[index].quantity);
+                                        value.decreaseQuantity(index);
+                                        value.totalPrice(index);
 
 
                                       },
@@ -55,6 +65,9 @@ class Orders extends StatelessWidget {
                                         //value.test[index].quantity--;
 
                                         //print(object)
+
+                                        value.increseQuantity(index);
+                                        value.totalPrice(index);
 
 
                                       },

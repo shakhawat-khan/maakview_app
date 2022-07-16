@@ -59,7 +59,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: Consumer<CartProvider>(
               builder: (context,value,child){
                 return Badge(
-                  badgeContent: Text(value.counter.toString(),style: TextStyle(color: Colors.white),),
+                  badgeContent: Text(value.orderNumber.toString(),style: TextStyle(color: Colors.white),),
                   position: BadgePosition.topEnd(end: -10,top: -20),
                   animationDuration: Duration(milliseconds: 300),
                   child: Icon(Icons.shopping_cart),

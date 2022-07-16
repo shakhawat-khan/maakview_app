@@ -108,12 +108,12 @@ class MostPopularData extends StatelessWidget {
                             builder: (context,value,child){
                               return ElevatedButton(onPressed: (){
 
-                                context.read<CartProvider>().addCounter();
+                                //context.read<CartProvider>().addCounter();
 
                                 //print('hello');
                                 //print(value.counter);
 
-                                context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id);
+                                context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id,data.basePrice);
 
 
 
@@ -210,10 +210,10 @@ class MostPopularData extends StatelessWidget {
                               builder: (context,value,child){
                                 return ElevatedButton(onPressed: (){
 
-                                  context.read<CartProvider>().addCounter();
+                                  //context.read<CartProvider>().addCounter();
                                   //print('hello');
                                   //print(value.counter);
-                                  context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id);
+                                  context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id,data.baseDiscountedPrice);
 
                                 },
                                   child: Row(
