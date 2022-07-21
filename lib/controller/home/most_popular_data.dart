@@ -113,7 +113,9 @@ class MostPopularData extends StatelessWidget {
                                 //print('hello');
                                 //print(value.counter);
 
-                                context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id,data.basePrice);
+                                context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id,data.basePrice,Checkbox(value: true, onChanged: (bool?x){
+                                  value.change(x,index);
+                                }));
 
 
 
@@ -183,6 +185,7 @@ class MostPopularData extends StatelessWidget {
                         children: [
 
                           Padding(
+                            
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           ),
@@ -213,7 +216,9 @@ class MostPopularData extends StatelessWidget {
                                   //context.read<CartProvider>().addCounter();
                                   //print('hello');
                                   //print(value.counter);
-                                  context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id,data.baseDiscountedPrice);
+                                  context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.basePrice,1,data.id,data.baseDiscountedPrice,Checkbox(value: value.isChecked, onChanged: (bool?x){
+                                    value.change(x,index);
+                                  }));
 
                                 },
                                   child: Row(
