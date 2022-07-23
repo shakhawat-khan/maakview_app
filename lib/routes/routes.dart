@@ -6,9 +6,12 @@ import 'package:maakview_app/view/home/home_screen.dart';
 import 'package:maakview_app/view/login.dart';
 import 'package:maakview_app/view/onBording.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
+import 'package:maakview_app/view/payment/payment.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
 
 import '../controller/home/view_all_categories.dart';
+
+import '../view/payment/payment.dart';
 
 
 
@@ -20,6 +23,7 @@ class RouteManager  {
   static const String home = '/home_screen';
   static const String bottom_nav = '/bottom-nav';
   static const String view_all_categories = '/view_all_categories';
+  static const String payment = '/payment';
 
 
 
@@ -62,6 +66,17 @@ class RouteManager  {
       case home:
         return MaterialPageRoute(builder: (context){
           return BottomNav();
+        });
+
+
+      /*case payment_class:
+        return MaterialPageRoute(builder: (context){
+          return Payment();
+        });*/
+
+      case payment:
+        return MaterialPageRoute(builder: (context){
+          return Payment();
         });
 
 

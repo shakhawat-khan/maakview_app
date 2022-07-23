@@ -106,6 +106,7 @@ class CartProvider with ChangeNotifier {
     test[index].quantity++;
     //print(test[index].quantity);
     total_price =  test[index].card_price + total_price;
+    //test[index].all_price = test[index].all_price+test[index].all_price;
     notifyListeners();
 
   }
@@ -115,6 +116,7 @@ class CartProvider with ChangeNotifier {
     test[index].quantity--;
     //print(test[index].quantity);
     total_price = total_price - test[index].card_price  ;
+    //test[index].all_price = test[index].all_price-test[index].card_price;
     notifyListeners();
   }
 
@@ -127,8 +129,10 @@ class CartProvider with ChangeNotifier {
   }
 
   void deleteCart (int index){
+    total_price = total_price - test[index].all_price;
     test.removeAt(index);
     orderNumber = test.length;
+
     notifyListeners();
   }
 

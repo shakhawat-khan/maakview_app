@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:maakview_app/provider/add_cart.dart';
 import 'package:provider/provider.dart';
 
+import '../../routes/routes.dart';
+
 class Orders extends StatefulWidget {
   const Orders({Key? key}) : super(key: key);
 
@@ -115,9 +117,21 @@ class _OrdersState extends State<Orders> {
                 Text('total Amount'),
                 Container(child: Text(value.total_price.toString())),
                 IconButton(
-                  icon: Icon(Icons.skip_next),
-                  onPressed: null,
-                )
+                  icon: Icon(Icons.payment_outlined),
+                  onPressed: (){
+
+                    Navigator.of(context).pushNamed(RouteManager.payment);
+
+
+                  },
+                ),
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).pushNamed(RouteManager.payment);
+                },
+
+                    child: Text('CHECK OUT')
+                ),
               ],
             );
         }
