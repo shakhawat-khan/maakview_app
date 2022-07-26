@@ -1,4 +1,4 @@
-import 'dart:js';
+
 
 import 'package:flutter/material.dart';
 import 'package:maakview_app/view/bottom_navBar/bottom_nav.dart';
@@ -6,12 +6,15 @@ import 'package:maakview_app/view/home/home_screen.dart';
 import 'package:maakview_app/view/login.dart';
 import 'package:maakview_app/view/onBording.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
+import 'package:maakview_app/view/payment/Bkash.dart';
+import 'package:maakview_app/view/payment/cash_on_delivery.dart';
 import 'package:maakview_app/view/payment/payment.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
 
 import '../controller/home/view_all_categories.dart';
 
 import '../view/payment/payment.dart';
+import '../view/pos/pos.dart';
 
 
 
@@ -24,6 +27,9 @@ class RouteManager  {
   static const String bottom_nav = '/bottom-nav';
   static const String view_all_categories = '/view_all_categories';
   static const String payment = '/payment';
+  static const String pos = '/pos';
+  static const String cash_on_delivery = '/cash_on_delivery';
+  static const String bkash = '/bkash';
 
 
 
@@ -77,6 +83,21 @@ class RouteManager  {
       case payment:
         return MaterialPageRoute(builder: (context){
           return Payment();
+        });
+
+      case pos:
+        return MaterialPageRoute(builder: (context){
+          return Pos();
+        });
+
+      case cash_on_delivery:
+        return MaterialPageRoute(builder: (context){
+          return CashOnDelivery();
+        });
+
+      case bkash:
+        return MaterialPageRoute(builder: (context){
+          return Bkash();
         });
 
 

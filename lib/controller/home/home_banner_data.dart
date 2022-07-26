@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:js';
+
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -26,7 +26,7 @@ class _SlideShowDataState extends State<SlideShowData> {
         Uri.parse('https://www.maakview.com/api/v1/setting/home/sliders'));
 
     if (response.statusCode == 200) {
-      print(jsonDecode(response.body));
+      //print(jsonDecode(response.body));
       return BannerModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load');

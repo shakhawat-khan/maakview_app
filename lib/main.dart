@@ -22,13 +22,18 @@ class Test extends StatelessWidget {
       child: MaterialApp(
 
         theme: ThemeData(
+          radioTheme: RadioThemeData(
+
+          ),
           colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Colors.indigo ,
+
           ),
         ),
         debugShowCheckedModeBanner: false,
         initialRoute: RouteManager.home,
         onGenerateRoute: RouteManager.generateRoute,
+
 
       ),
     );

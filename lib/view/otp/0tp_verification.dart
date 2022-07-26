@@ -292,50 +292,52 @@ class _OtpState extends State<Otp> {
   }
 
   Widget _textFieldOTP({required bool first, last,required String code,required TextEditingController test }) {
-    return Container(
-      height: 85,
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: TextFormField(
+    return Flexible(
+      child: Container(
+        height: 85,
+        child: AspectRatio(
+          aspectRatio: 1.0,
+          child: TextFormField(
 
-          controller: test,
+            controller: test,
 
-          autofocus: true,
-          onChanged: (value) {
-            if (value.length == 1 ) {
-              FocusScope.of(context).nextFocus();
-              if(value == code){
-                setState(() {
-                  counterOtp = counterOtp+1;
-                });
+            autofocus: true,
+            onChanged: (value) {
+              if (value.length == 1 ) {
+                FocusScope.of(context).nextFocus();
+                if(value == code){
+                  setState(() {
+                    counterOtp = counterOtp+1;
+                  });
+                }
+
               }
+            },
 
-            }
-          },
-
-          validator: (value){
-            if(value==null || value != code){
-              return "ERROR";
-            }
-            else {
-              null;
-            }
-          },
+            validator: (value){
+              if(value==null || value != code){
+                return "ERROR";
+              }
+              else {
+                null;
+              }
+            },
 
 
-          showCursor: true ,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          keyboardType: TextInputType.number,
-          maxLength: 1,
-          decoration: InputDecoration(
-            counter: Offstage(),
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 2, color: Colors.black12),
-                borderRadius: BorderRadius.circular(12)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 2, color: Colors.indigo),
-                borderRadius: BorderRadius.circular(12)),
+            showCursor: true ,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            keyboardType: TextInputType.number,
+            maxLength: 1,
+            decoration: InputDecoration(
+              counter: Offstage(),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2, color: Colors.black12),
+                  borderRadius: BorderRadius.circular(12)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2, color: Colors.indigo),
+                  borderRadius: BorderRadius.circular(12)),
+            ),
           ),
         ),
       ),

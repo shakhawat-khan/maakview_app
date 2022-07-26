@@ -53,6 +53,7 @@ dependencies:
   currency_text_input_formatter: ^2.1.7
   money_formatter: ^0.0.3
   badges: ^2.0.3
+  fluttericon: ^2.0.0
 
 
 
@@ -93,6 +94,7 @@ flutter:
     - assets/homepage/sign_in_button_logo/
     - assets/appbar_back/
     - assets/onBoarding_screen/
+    - assets/payment/
 
   #   - images/a_dot_ham.jpeg
 

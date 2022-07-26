@@ -113,9 +113,15 @@ class CartProvider with ChangeNotifier {
 
   void decreaseQuantity (int index){
 
-    test[index].quantity--;
+    if(test[index].quantity >0 ){
+      test[index].quantity--;
+      total_price = total_price - test[index].card_price  ;
+      notifyListeners();
+    }
+
+    //test[index].quantity--;
     //print(test[index].quantity);
-    total_price = total_price - test[index].card_price  ;
+    //total_price = total_price - test[index].card_price  ;
     //test[index].all_price = test[index].all_price-test[index].card_price;
     notifyListeners();
   }

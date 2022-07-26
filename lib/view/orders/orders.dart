@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../routes/routes.dart';
 
+import 'package:fluttericon/elusive_icons.dart';
+
 class Orders extends StatefulWidget {
   const Orders({Key? key}) : super(key: key);
 
@@ -51,7 +53,7 @@ class _OrdersState extends State<Orders> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(value.test[index].all_price.toString()),
+                              Text('৳ '+value.test[index].all_price.toString(),style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20)),
                               IconButton(onPressed: () {
                                 value.deleteCart(index);
                                 }, icon: const Icon(Icons.delete,color: Colors.red,)),
@@ -73,9 +75,11 @@ class _OrdersState extends State<Orders> {
 
                                       },
 
-                                      child: Icon(Icons.chevron_left)
+                                      child: Icon(Elusive.minus_circled,size: 15,color: Colors.indigo,)
                                   ),
-                                  Text(value.test[index].quantity.toString()),
+                                  SizedBox(width: 10,),
+                                  Text(value.test[index].quantity.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                                  SizedBox(width: 10,),
                                   InkWell(
                                       onTap: (){
 
@@ -88,7 +92,7 @@ class _OrdersState extends State<Orders> {
 
 
                                       },
-                                      child: Icon(Icons.chevron_right)
+                                      child: Icon(Elusive.plus_circled,size: 15,color: Colors.indigo,)
                                   )
                                 ],
                               );
@@ -114,24 +118,23 @@ class _OrdersState extends State<Orders> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('total Amount'),
-                Container(child: Text(value.total_price.toString())),
+                Text('Total Amount'),
+                Container(child: Text('৳ '+value.total_price.toString(),style: TextStyle(
+                  fontSize: 20,fontWeight: FontWeight.bold
+                ),)),
                 IconButton(
                   icon: Icon(Icons.payment_outlined),
                   onPressed: (){
 
-                    Navigator.of(context).pushNamed(RouteManager.payment);
+                    //Navigator.of(context).pushNamed(RouteManager.payment);
 
 
                   },
                 ),
-                InkWell(
-                  onTap: (){
-                    Navigator.of(context).pushNamed(RouteManager.payment);
-                },
+                ElevatedButton(onPressed: (){
+                  Navigator.of(context).pushNamed(RouteManager.pos);
 
-                    child: Text('CHECK OUT')
-                ),
+                 }, child: Text('CHECK OUT'))
               ],
             );
         }
