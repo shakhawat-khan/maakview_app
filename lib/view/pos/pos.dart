@@ -35,7 +35,7 @@ class Pos extends StatelessWidget {
                       itemBuilder: (context,index){
                       int yo = index+1;
                         return Container(
-                          height: 100,
+                          height: 200,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

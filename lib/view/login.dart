@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../routes/routes.dart';
+import 'package:http/http.dart' as http ;
+
+
 
 class MyApp extends StatefulWidget {
   @override
@@ -18,10 +22,27 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
   bool isChecked = false;
   String phoneNumber = '';
   bool wait = false;
+  final Uri _url = Uri.parse('https://maakview.com/otp/1234/01557038556');
 
 
   final Color facebookColor = const Color(0xff39579A);
   final Color googleColor = const Color(0xffDF4A32);
+
+  Future<void> _launchUrl() async {
+    http.Response response;
+
+    response = await http.get(Uri.parse('https://maakview.com/otp/1234/01557038556'));
+
+    if(response.statusCode==200){
+      print('okay');
+
+    } else {
+      throw Exception(('Failed to load'));
+    }
+
+  }
+
+
 
 
 
@@ -183,7 +204,10 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                 width: 355,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.indigo[900]),
-                  onPressed: () {
+                  onPressed:
+
+                   () {
+
                     if (isChecked == false ||
                         formKey.currentState!.validate() == false) {
                       //print('error');
@@ -197,7 +221,12 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                           {'number': phoneNumber}
 
                       );
-                    }
+                    };
+                    _launchUrl();
+
+
+
+
                   },
                   child: Text(
                     'Login',

@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../routes/routes.dart';
 import 'lib/routes/routes.dart';
+import 'package:http/http.dart' as http ;
 
 class Otp extends StatefulWidget {
   String number;
@@ -23,11 +25,16 @@ class _OtpState extends State<Otp> {
   Color border = Colors.black;
   int counterOtp=0;
   bool wait = true;
+
   TextEditingController _controller1 = TextEditingController();
   final fieldText1 = TextEditingController();
   final fieldText2 = TextEditingController();
   final fieldText3 = TextEditingController();
   final fieldText4 = TextEditingController();
+
+
+
+
 
   void cleanText(){
     fieldText1.clear();
@@ -56,7 +63,6 @@ class _OtpState extends State<Otp> {
     });
 
   }
-
 
 
   @override
@@ -244,7 +250,13 @@ class _OtpState extends State<Otp> {
                           counterOtp = 0;
                         });
                         cleanText();
-                    }
+                    };
+
+                  launchUrl;
+
+
+
+
 
 
                 },
