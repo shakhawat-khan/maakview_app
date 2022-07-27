@@ -9,22 +9,32 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../routes/routes.dart';
 import 'lib/routes/routes.dart';
 import 'package:http/http.dart' as http ;
+import '../login.dart';
+import 'dart:math';
 
 class Otp extends StatefulWidget {
   String number;
 
 
-  Otp({required this.number});
+
+
+
+  Otp({
+    required this.number,
+
+  });
 
   @override
   State<Otp> createState() => _OtpState();
 }
 
 class _OtpState extends State<Otp> {
-  int start = 30;
+  int start = 40;
   Color border = Colors.black;
   int counterOtp=0;
   bool wait = true;
+  Random random = Random();
+
 
   TextEditingController _controller1 = TextEditingController();
   final fieldText1 = TextEditingController();
@@ -32,16 +42,38 @@ class _OtpState extends State<Otp> {
   final fieldText3 = TextEditingController();
   final fieldText4 = TextEditingController();
 
+  String rand1 ='';
+  String rand2 ='';
+  String rand3 ='';
+  String rand4 ='';
 
 
 
+  Future<void> launchUrlTest(String otp) async {
+    http.Response response;
 
-  void cleanText(){
+    response = await http.get(Uri.parse('https://maakview.com/otp/$otp/${widget.number}'));
+
+    //print(otp+' ' + phoneNumber);
+
+    if(response.statusCode==200){
+      print('okay');
+
+    } else {
+      throw Exception(('Failed to load'));
+    }
+
+  }
+
+
+
+    void cleanText(){
     fieldText1.clear();
     fieldText2.clear();
     fieldText3.clear();
     fieldText4.clear();
   }
+
 
   void startTimer()
   {
@@ -64,11 +96,25 @@ class _OtpState extends State<Otp> {
 
   }
 
+  void genRandomNumber(){
+
+    rand1 = random.nextInt(10).toString();
+    rand2 = random.nextInt(10).toString();
+    rand3 = random.nextInt(10).toString();
+    rand4 = random.nextInt(10).toString();
+
+    String otp = rand1+rand2+rand3+rand4;
+
+    launchUrlTest(otp);
+
+  }
+
 
   @override
   void initState() {
 
     startTimer();
+    genRandomNumber();
 
     super.initState();
 
@@ -84,14 +130,17 @@ class _OtpState extends State<Otp> {
 
   final formKey = GlobalKey<FormState>();
 
-  String otp_code = '1234';
 
-  @override
+
+
+
+    @override
   Widget build(BuildContext context) {
 
     //print('hello');
 
-    return Scaffold(
+
+      return Scaffold(
         appBar: AppBar(
           //backgroundColor: Colors.indigo[800],
           toolbarHeight: 148,
@@ -163,10 +212,10 @@ class _OtpState extends State<Otp> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _textFieldOTP(first: true, last: false,code:otp_code[0],test: fieldText1 ),
-                  _textFieldOTP(first: false, last: false,code:otp_code[1] ,test: fieldText2),
-                  _textFieldOTP(first: false, last: false,code:otp_code[2],test: fieldText3 ),
-                  _textFieldOTP(first: false, last: true,code:otp_code[3] ,test: fieldText4),
+                  _textFieldOTP(first: true, last: false,code:rand1,test: fieldText1 ),
+                  _textFieldOTP(first: false, last: false,code:rand2 ,test: fieldText2),
+                  _textFieldOTP(first: false, last: false,code:rand3,test: fieldText3 ),
+                  _textFieldOTP(first: false, last: true,code:rand4 ,test: fieldText4),
 
                 ],
               ),
@@ -229,7 +278,7 @@ class _OtpState extends State<Otp> {
 
                   if(counterOtp==4){
                     Fluttertoast.showToast(msg: 'correct' ,
-                    gravity: ToastGravity.CENTER,
+                    gravity: ToastGravity.BOTTOM,
                     timeInSecForIosWeb: 2,
                     backgroundColor: Colors.grey);
                     setState(() {
@@ -243,7 +292,7 @@ class _OtpState extends State<Otp> {
 
                   } else{
                         Fluttertoast.showToast(msg: 'Incorrect' ,
-                        gravity: ToastGravity.CENTER,
+                        gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 2,
                         backgroundColor: Colors.grey);
                         setState(() {
@@ -278,6 +327,7 @@ class _OtpState extends State<Otp> {
                       start=30;
                       startTimer();
                       wait = true;
+                      genRandomNumber();
 
                     });
                   },

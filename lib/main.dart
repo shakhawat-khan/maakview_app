@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maakview_app/provider/add_cart.dart';
+import 'package:maakview_app/provider/otp_varification_provider.dart';
 import 'package:maakview_app/routes/routes.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +17,12 @@ class Test extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CartProvider(),
+    return MultiProvider(providers: [
+
+      ChangeNotifierProvider(create: (context)=> CartProvider() ),
+      ChangeNotifierProvider(create: (context)=>OtpVerification()),
+
+    ],
 
       child: MaterialApp(
 
@@ -36,6 +41,7 @@ class Test extends StatelessWidget {
 
 
       ),
+
     );
   }
 }

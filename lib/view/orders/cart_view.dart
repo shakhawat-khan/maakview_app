@@ -7,7 +7,7 @@ class OrderView   {
   int quantity ;
   int id;
   int all_price;
-  Widget checkbox;
+
 
 
 
@@ -17,7 +17,7 @@ class OrderView   {
     required this.quantity,
     required this.id,
     required this.all_price,
-    required this.checkbox
+
   });
 
 }

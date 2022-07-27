@@ -37,17 +37,7 @@ class CartProvider with ChangeNotifier {
 
   //final name = List<String>;
 
-  void change(value,index){
 
-    //test[index].checkbox(value);
-    //print('press');
-    test[index].checkbox = Checkbox(value: true, onChanged: (bool?x) {
-      value=x;
-    }
-    );
-    notifyListeners();
-
-  }
 
 /*  void total (){
 
@@ -62,10 +52,10 @@ class CartProvider with ChangeNotifier {
 
 
 
-  void addProductCart(String image,String name,int price,int quantity,int id,int all_price,Widget checkbox){
+  void addProductCart(String image,String name,int price,int quantity,int id,int all_price){
 
     if(test.isEmpty){
-      OrderView orderView = OrderView(card_image: image, card_name: name, card_price: price,quantity: quantity,id: id,all_price: all_price,checkbox:checkbox );
+      OrderView orderView = OrderView(card_image: image, card_name: name, card_price: price,quantity: quantity,id: id,all_price: all_price );
       test.add(orderView);
       total_price = total_price + all_price;
       orderNumber = test.length;
@@ -81,7 +71,7 @@ class CartProvider with ChangeNotifier {
       }
 
       if(check == test.length){
-        OrderView orderView = OrderView(card_image: image, card_name: name, card_price: price,quantity: quantity,id: id,all_price: all_price, checkbox: checkbox);
+        OrderView orderView = OrderView(card_image: image, card_name: name, card_price: price,quantity: quantity,id: id,all_price: all_price);
         test.add(orderView);
         //print('check from if $check');
         total_price = total_price + all_price;

@@ -9,46 +9,39 @@ import 'package:url_launcher/url_launcher.dart';
 import '../routes/routes.dart';
 import 'package:http/http.dart' as http ;
 
+import 'dart:math';
+
+
 
 
 class MyApp extends StatefulWidget {
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyApp> createState() => MyAppState();
+
 }
 
-class _MyAppState extends State<MyApp> with ChangeNotifier {
+class MyAppState extends State<MyApp> with ChangeNotifier {
+
   final formKey = GlobalKey<FormState>();
+  GlobalKey<MyAppState> _myKey = GlobalKey();
   String password = '';
   bool isChecked = false;
   String phoneNumber = '';
   bool wait = false;
-  final Uri _url = Uri.parse('https://maakview.com/otp/1234/01557038556');
+  //final Uri _url = Uri.parse('https://maakview.com/otp/1234/01557038556');
 
 
   final Color facebookColor = const Color(0xff39579A);
   final Color googleColor = const Color(0xffDF4A32);
 
-  Future<void> _launchUrl() async {
-    http.Response response;
-
-    response = await http.get(Uri.parse('https://maakview.com/otp/1234/01557038556'));
-
-    if(response.statusCode==200){
-      print('okay');
-
-    } else {
-      throw Exception(('Failed to load'));
-    }
-
-  }
-
-
-
-
+  Random random = Random();
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
+      key: _myKey,
       appBar: AppBar(
         //backgroundColor: Colors.indigo[800],
         toolbarHeight: 148,
@@ -218,11 +211,15 @@ class _MyAppState extends State<MyApp> with ChangeNotifier {
                       //print(phoneNumber);
                       Navigator.of(context).pushNamed(RouteManager.otpPage,arguments:
 
-                          {'number': phoneNumber}
+                          {'number': phoneNumber,
+
+                          },
+
+
 
                       );
                     };
-                    _launchUrl();
+
 
 
 

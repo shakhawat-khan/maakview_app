@@ -51,7 +51,7 @@ class RouteManager  {
 
       case otpPage:
         return MaterialPageRoute(builder: (context){
-          return Otp(number: valuePassed['number'],);
+          return Otp(number: valuePassed['number'] );
         });
 
       case terms :
