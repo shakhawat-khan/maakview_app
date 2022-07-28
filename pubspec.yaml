@@ -55,6 +55,7 @@ dependencies:
   badges: ^2.0.3
   fluttericon: ^2.0.0
   url_launcher: ^6.1.5
+  flutter_html: ^3.0.0-alpha.3
 
 
 

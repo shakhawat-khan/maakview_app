@@ -23,7 +23,7 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> with ChangeNotifier {
 
   final formKey = GlobalKey<FormState>();
-  GlobalKey<MyAppState> _myKey = GlobalKey();
+
   String password = '';
   bool isChecked = false;
   String phoneNumber = '';
@@ -41,7 +41,7 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
 
 
     return Scaffold(
-      key: _myKey,
+
       appBar: AppBar(
         //backgroundColor: Colors.indigo[800],
         toolbarHeight: 148,
@@ -211,9 +211,7 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
                       //print(phoneNumber);
                       Navigator.of(context).pushNamed(RouteManager.otpPage,arguments:
 
-                          {'number': phoneNumber,
-
-                          },
+                          {'number': phoneNumber,},
 
 
 

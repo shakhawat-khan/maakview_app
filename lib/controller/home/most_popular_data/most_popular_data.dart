@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http ;
 import 'package:provider/provider.dart';
 
-import '../../model/home/most_popular_model.dart';
+import '../../../model/home/most_popular_model.dart';
 import 'package:like_button/like_button.dart';
 
-import '../../provider/add_cart.dart';
+import '../../../model/home/most_popular_model.dart';
+import '../../../provider/add_cart.dart';
+import '../../../routes/routes.dart';
 
 class MostPopularData extends StatelessWidget {
 
@@ -57,7 +59,7 @@ class MostPopularData extends StatelessWidget {
 
 
     return Container(
-      height: 260,
+      height: 270,
       width: double.infinity,
       child: ListView.builder(
         controller:  _controller,
@@ -74,61 +76,65 @@ class MostPopularData extends StatelessWidget {
             child: data.basePrice==data.baseDiscountedPrice? InkWell(
               onTap: (){
 
+                Navigator.of(context).pushNamed(RouteManager.most_popular_product_details,arguments: {'slug' : data.slug });
+
               },
-              child: Container(
+              child: Flexible(
+                child: Container(
 
-                width: 150,
+                  width: 165,
 
-                child: Card(
-                  elevation: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
-                    child: Column(
-                      children: [
-                        Image.network(data.thumbnailImage,fit: BoxFit.fitWidth,),
-                        Row(
-                          children: [
+                  child: Card(
+                    elevation: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                      child: Column(
+                        children: [
+                          Image.network(data.thumbnailImage,fit: BoxFit.fitWidth,),
+                          Row(
+                            children: [
 
-                            Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                            Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                            //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                            Spacer(),
-                            LikeButton(size: 18,)
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        SizedBox(
-                            height: 30,
-                            child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
-                        ),
-                        //SizedBox(height: 10,),
-                        Spacer(),
-                        Container(height: 20,width: 102,
-                          child: Consumer<CartProvider>(
-                            builder: (context,value,child){
-                              return ElevatedButton(onPressed: (){
+                              Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                              Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                              //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                              Spacer(),
+                              LikeButton(size: 16,)
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          SizedBox(
+                              height: 30,
+                              child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
+                          ),
+                          //SizedBox(height: 10,),
+                          Spacer(),
+                          Container(height: 20,width: 105,
+                            child: Consumer<CartProvider>(
+                              builder: (context,value,child){
+                                return ElevatedButton(onPressed: (){
 
-                                //context.read<CartProvider>().addCounter();
+                                  //context.read<CartProvider>().addCounter();
 
-                                //print('hello');
-                                //print(value.counter);
+                                  //print('hello');
+                                  //print(value.counter);
 
-                                context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.baseDiscountedPrice,1,data.id,data.baseDiscountedPrice);
+                                  context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.baseDiscountedPrice,1,data.id,data.baseDiscountedPrice);
 
 
 
+                                },
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.shopping_cart,size: 15,),
+                                      Text('Add to cart',style: TextStyle(fontSize: 10),),
+                                    ],
+                                  ),
+                                );
                               },
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.shopping_cart,size: 18,),
-                                    Text('Add to cart',style: TextStyle(fontSize: 10),),
-                                  ],
-                                ),
-                              );
-                            },
-                          )
-                        ),
-                      ],
+                            )
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -136,7 +142,7 @@ class MostPopularData extends StatelessWidget {
             )
             : InkWell(
               onTap: (){
-
+                Navigator.of(context).pushNamed(RouteManager.most_popular_product_details,arguments: {'slug' : data.slug });
               },
               child: Container(
 
@@ -190,7 +196,7 @@ class MostPopularData extends StatelessWidget {
                           Text('${oCcy.format(data.baseDiscountedPrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           SizedBox(width:25 ,),
-                          LikeButton(size: 18,)
+                          LikeButton(size: 17,)
                         ],
                       ),
                       //SizedBox(height: 10,),
@@ -220,8 +226,8 @@ class MostPopularData extends StatelessWidget {
                                 },
                                   child: Row(
                                     children: [
-                                      Icon(Icons.shopping_cart,size: 18,),
-                                      Text('Add to cart',style: TextStyle(fontSize: 10),),
+                                      Icon(Icons.shopping_cart,size: 15,),
+                                      Text('Add to cart',style: TextStyle(fontSize: 9),),
                                     ],
                                   ),
                                 );

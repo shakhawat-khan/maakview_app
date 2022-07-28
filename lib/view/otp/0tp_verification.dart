@@ -213,9 +213,13 @@ class _OtpState extends State<Otp> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _textFieldOTP(first: true, last: false,code:rand1,test: fieldText1 ),
+                  SizedBox(width: 10,),
                   _textFieldOTP(first: false, last: false,code:rand2 ,test: fieldText2),
+                  SizedBox(width: 10,),
                   _textFieldOTP(first: false, last: false,code:rand3,test: fieldText3 ),
+                  SizedBox(width: 10,),
                   _textFieldOTP(first: false, last: true,code:rand4 ,test: fieldText4),
+                  SizedBox(width: 10,),
 
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:maakview_app/provider/add_cart.dart';
 import 'package:maakview_app/provider/otp_varification_provider.dart';
 import 'package:maakview_app/routes/routes.dart';
@@ -27,6 +28,11 @@ class Test extends StatelessWidget {
       child: MaterialApp(
 
         theme: ThemeData(
+          textTheme: GoogleFonts.poppinsTextTheme(
+            Theme.of(context).textTheme,
+          ),
+
+
           radioTheme: RadioThemeData(
 
           ),

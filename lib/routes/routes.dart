@@ -13,6 +13,7 @@ import 'package:maakview_app/view/term_and_condition.dart';
 
 import '../controller/home/view_all_categories.dart';
 
+import '../view/details_most_popular_data/details_data.dart';
 import '../view/payment/payment.dart';
 import '../view/pos/pos.dart';
 
@@ -30,6 +31,8 @@ class RouteManager  {
   static const String pos = '/pos';
   static const String cash_on_delivery = '/cash_on_delivery';
   static const String bkash = '/bkash';
+  static const String most_popular_product_details = '/most_popular_product_details';
+
 
 
 
@@ -98,6 +101,11 @@ class RouteManager  {
       case bkash:
         return MaterialPageRoute(builder: (context){
           return Bkash();
+        });
+
+      case most_popular_product_details:
+        return MaterialPageRoute(builder: (context){
+          return DetailsData(slug: valuePassed['slug']);
         });
 
 
