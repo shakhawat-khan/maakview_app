@@ -33,7 +33,7 @@ class _OrdersState extends State<Orders> {
                 return ListView.builder(
                   scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: value.test.length,
+                    itemCount: value.orderView_list.length,
                     itemBuilder: (context,index)
                     {
 
@@ -45,15 +45,15 @@ class _OrdersState extends State<Orders> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
 
-                              Image.network(value.test[index].card_image,width: 50,height: 50,),
+                              Image.network(value.orderView_list[index].card_image,width: 50,height: 50,),
 
                             ],
                           ),
-                          title: Text(value.test[index].card_name,style: TextStyle(fontSize: 10),),
+                          title: Text(value.orderView_list[index].card_name,style: TextStyle(fontSize: 10),),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('৳ '+value.test[index].all_price.toString(),style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20)),
+                              Text('৳ '+value.orderView_list[index].all_price.toString(),style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20)),
                               IconButton(onPressed: () {
                                 value.deleteCart(index);
                                 }, icon: const Icon(Icons.delete,color: Colors.red,)),
@@ -78,7 +78,7 @@ class _OrdersState extends State<Orders> {
                                       child: Icon(Elusive.minus_circled,size: 15,color: Colors.indigo,)
                                   ),
                                   SizedBox(width: 10,),
-                                  Text(value.test[index].quantity.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                                  Text(value.orderView_list[index].quantity.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                                   SizedBox(width: 10,),
                                   InkWell(
                                       onTap: (){

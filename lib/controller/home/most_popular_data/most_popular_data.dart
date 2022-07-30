@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http ;
@@ -79,62 +80,67 @@ class MostPopularData extends StatelessWidget {
                 Navigator.of(context).pushNamed(RouteManager.most_popular_product_details,arguments: {'slug' : data.slug });
 
               },
-              child: Flexible(
-                child: Container(
+              child: Container(
 
-                  width: 165,
+                width: 165,
 
-                  child: Card(
-                    elevation: 5,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
-                      child: Column(
-                        children: [
-                          Image.network(data.thumbnailImage,fit: BoxFit.fitWidth,),
-                          Row(
-                            children: [
+                child: Card(
+                  elevation: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                    child: Column(
+                      children: [
+                        Image.network(data.thumbnailImage,fit: BoxFit.fitWidth,),
+                        Row(
+                          children: [
 
-                              Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                              Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                              //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                              Spacer(),
-                              LikeButton(size: 16,)
-                            ],
-                          ),
-                          SizedBox(height: 10,),
-                          SizedBox(
-                              height: 30,
-                              child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
-                          ),
-                          //SizedBox(height: 10,),
-                          Spacer(),
-                          Container(height: 20,width: 105,
-                            child: Consumer<CartProvider>(
-                              builder: (context,value,child){
-                                return ElevatedButton(onPressed: (){
+                            Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                            Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                            //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                            Spacer(),
+                            LikeButton(size: 16,)
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        SizedBox(
+                            height: 30,
+                            child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
+                        ),
+                        //SizedBox(height: 10,),
+                        Spacer(),
+                        Container(height: 20,width: 105,
+                          child: Consumer<CartProvider>(
+                            builder: (context,value,child){
+                              return ElevatedButton(onPressed: (){
 
-                                  //context.read<CartProvider>().addCounter();
+                                //context.read<CartProvider>().addCounter();
 
-                                  //print('hello');
-                                  //print(value.counter);
+                                //print('hello');
+                                //print(value.counter);
 
-                                  context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.baseDiscountedPrice,1,data.id,data.baseDiscountedPrice);
+                                value.checkCart(data.id);
+
+                                context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.baseDiscountedPrice,1,data.id,data.baseDiscountedPrice);
+
+                                Fluttertoast.showToast(msg: '${value.addCart_check}' ,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 2,
+                                    backgroundColor: Colors.grey);
 
 
 
-                                },
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.shopping_cart,size: 15,),
-                                      Text('Add to cart',style: TextStyle(fontSize: 10),),
-                                    ],
-                                  ),
-                                );
                               },
-                            )
-                          ),
-                        ],
-                      ),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.shopping_cart,size: 15,),
+                                    Text('Add to cart',style: TextStyle(fontSize: 10),),
+                                  ],
+                                ),
+                              );
+                            },
+                          )
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -220,7 +226,15 @@ class MostPopularData extends StatelessWidget {
                                   //context.read<CartProvider>().addCounter();
                                   //print('hello');
                                   //print(value.counter);
+
+                                  value.checkCart(data.id);
+
                                   context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.baseDiscountedPrice,1,data.id,data.baseDiscountedPrice,);
+
+                                  Fluttertoast.showToast(msg: '${value.addCart_check}' ,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 2,
+                                      backgroundColor: Colors.grey);
 
 
                                 },

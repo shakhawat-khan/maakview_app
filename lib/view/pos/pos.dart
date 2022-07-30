@@ -31,11 +31,11 @@ class Pos extends StatelessWidget {
 
                   ListView.builder(
                     shrinkWrap: true,
-                      itemCount: value.test.length,
+                      itemCount: value.orderView_list.length,
                       itemBuilder: (context,index){
                       int yo = index+1;
                         return Container(
-                          height: 200,
+                          height: 250,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -46,17 +46,17 @@ class Pos extends StatelessWidget {
                                     Flexible(child: Text((yo).toString())),
                                     Text('.'),
                                     SizedBox(width: 10,),
-                                    Flexible(child: Text(value.test[index].card_name)),
+                                    Flexible(child: Text(value.orderView_list[index].card_name)),
 
                                     SizedBox(width: 20,),
 
 
 
-                                    Text('Quantity no. '+value.test[index].quantity.toString()),
+                                    Text('Quantity no. '+value.orderView_list[index].quantity.toString()),
 
                                     Spacer(),
 
-                                    Text('৳ '+value.test[index].all_price.toString())
+                                    Text('৳ '+value.orderView_list[index].all_price.toString())
 
                                   ],
                                 ),
