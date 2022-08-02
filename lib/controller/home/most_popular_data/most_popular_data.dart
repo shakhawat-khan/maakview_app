@@ -98,7 +98,7 @@ class MostPopularData extends StatelessWidget {
                             Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                             //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                             Spacer(),
-                            LikeButton(size: 16,)
+                            LikeButton(size: 15,)
                           ],
                         ),
                         SizedBox(height: 10,),
@@ -126,8 +126,6 @@ class MostPopularData extends StatelessWidget {
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 2,
                                     backgroundColor: Colors.grey);
-
-
 
                               },
                                 child: Row(
@@ -202,7 +200,7 @@ class MostPopularData extends StatelessWidget {
                           Text('${oCcy.format(data.baseDiscountedPrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                           SizedBox(width:25 ,),
-                          LikeButton(size: 17,)
+                          LikeButton(size: 15,)
                         ],
                       ),
                       //SizedBox(height: 10,),

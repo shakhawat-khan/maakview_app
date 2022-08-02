@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maakview_app/controller/home/most_popular_data/most_popular_data.dart';
+import 'package:maakview_app/view/flash_sale/flash_sale.dart';
 import 'package:maakview_app/view/loading_screen/loading_screen.dart';
 import 'package:marquee_widget/marquee_widget.dart';
+import '../../controller/home/flash_sale_data.dart';
 import '../../controller/home/home_banner_data.dart';
 //import '../../controller/home_slider/home_banner_data.dart';
 import '../../routes/routes.dart';
@@ -158,8 +160,22 @@ class _HomeState extends State<Home> {
 
                 MostPopularBannerData(),
 
+                SizedBox(height: 18,),
 
-                Text('data'),
+                Row(
+                  children: [
+                    Text(
+                      'Flash Sale',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(fontSize: 16),
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+
+                FlashSaleData(),
+
+
 
                 //LoadingScreen(),
 

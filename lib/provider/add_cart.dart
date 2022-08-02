@@ -11,7 +11,7 @@ class CartProvider with ChangeNotifier {
   int orderNumber = 0;
   bool isChecked = false;
   int total_price = 0;
-  String addCart_check= 'Added';
+  String addCart_check= 'Added to your cart';
 
   int addCart_check_flag = 0;
 
@@ -66,7 +66,7 @@ class CartProvider with ChangeNotifier {
   void checkCart(int id){
 
     if(orderView_list.length==0){
-      addCart_check = 'Added';
+      addCart_check = 'Added to your cart';
     } else{
 
       for(int i=0;i<orderView_list.length;i++)
@@ -74,6 +74,7 @@ class CartProvider with ChangeNotifier {
         if(orderView_list[i].id==id)
         {
           addCart_check = 'This product is already in cart in your cart';
+          break;
         } else{
 
           addCart_check = 'Added to your cart';
@@ -126,13 +127,8 @@ class CartProvider with ChangeNotifier {
 
   void deleteCart (int index){
     total_price = total_price - orderView_list[index].all_price;
-
-
-
     orderView_list.removeAt(index);
-
     orderNumber = orderView_list.length;
-
     notifyListeners();
   }
 

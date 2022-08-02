@@ -13,6 +13,7 @@ import 'package:maakview_app/view/term_and_condition.dart';
 
 import '../controller/home/view_all_categories.dart';
 
+import '../model/home/viewall_categoreis_model.dart';
 import '../view/details_most_popular_data/details_data.dart';
 import '../view/orders/orders.dart';
 import '../view/payment/payment.dart';
@@ -71,7 +72,7 @@ class RouteManager  {
 
       case view_all_categories:
         return MaterialPageRoute(builder: (context){
-          return ViewAllCategories();
+          return Categories();
         });
 
       case home:
