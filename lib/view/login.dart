@@ -12,8 +12,6 @@ import 'package:http/http.dart' as http ;
 import 'dart:math';
 
 
-
-
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => MyAppState();

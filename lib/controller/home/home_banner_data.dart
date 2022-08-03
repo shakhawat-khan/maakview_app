@@ -43,8 +43,6 @@ class _SlideShowDataState extends State<SlideShowData> {
 
           //print(snapshot.data);
 
-
-
           if (snapshot.hasData ) {
             //print('has data');
             return buildSlider(bannerModel!);
