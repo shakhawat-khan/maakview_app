@@ -42,10 +42,10 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
 
       appBar: AppBar(
         //backgroundColor: Colors.indigo[800],
-        toolbarHeight: 148,
-        flexibleSpace:Image(image: AssetImage('assets/appbar_back/new_backlogo.png'),
+        toolbarHeight: 138,
+        /*flexibleSpace:Image(image: AssetImage('assets/appbar_back/new_backlogo.png'),
 
-            fit: BoxFit.none,) ,
+            fit: BoxFit.cover,) ,*/
 
         title: Column(
           children: [

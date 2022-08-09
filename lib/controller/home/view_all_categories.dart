@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -70,7 +71,15 @@ class _CategoriesState extends State<Categories> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Image.network(data.banner.toString(),height: 100,width: 150,),
+                //Image.network(data.banner.toString(),height: 100,width: 150,),
+                  CachedNetworkImage(
+                  //width: MediaQuery.of(context).size.width,
+                  imageUrl:data.banner.toString(),
+                  filterQuality: FilterQuality.low,
+                  height: 100, width: 150
+
+
+                ),
                 Text(data.name.toString()),
                 Row(
                   children: [

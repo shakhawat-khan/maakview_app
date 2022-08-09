@@ -38,7 +38,7 @@ class MostPopularBannerData extends StatelessWidget {
             return Text('${snapshot.error}');
           }
 
-          return Center(child:CircularProgressIndicator());
+          return Center(child:CircularProgressIndicator(color: Colors.white,));
         },
       ),
     );
@@ -50,7 +50,7 @@ class MostPopularBannerData extends StatelessWidget {
     return InkWell(
       onTap: (){},
       child: Container(
-        height: 100,
+        //height: 100,
         width: double.infinity,
         child: Image.network(data,fit: BoxFit.fill,),
       ),

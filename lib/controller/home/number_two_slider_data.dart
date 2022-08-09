@@ -49,7 +49,7 @@ class _SliderNumberTwoState extends State<SliderNumberTwo> {
             return Text('${snapshot.error}');
           }
 
-          return Center(child: const CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator(color: Colors.white,));
         },
       ),
     );
@@ -72,7 +72,7 @@ class _SliderNumberTwoState extends State<SliderNumberTwo> {
         },
         options: CarouselOptions(
 
-        height: 150.0,
+        //height: 150.0,
         enlargeCenterPage: true,
         autoPlay: true,
         enableInfiniteScroll: true,

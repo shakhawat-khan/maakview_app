@@ -102,6 +102,10 @@ class _HomeState extends State<Home> {
 
                     borderRadius: BorderRadius.circular(10),
 
+                    onChanged: (value){},
+
+                    onSubmitted: (value){},
+
                   ),
                 ),
 

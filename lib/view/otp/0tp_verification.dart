@@ -1,11 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../model/home/auth/response_post_phone_number.dart';
 import '../../routes/routes.dart';
 import 'lib/routes/routes.dart';
 import 'package:http/http.dart' as http ;
@@ -34,6 +35,7 @@ class _OtpState extends State<Otp> {
   int counterOtp=0;
   bool wait = true;
   Random random = Random();
+  bool isloading = false ;
 
 
   TextEditingController _controller1 = TextEditingController();
@@ -46,25 +48,6 @@ class _OtpState extends State<Otp> {
   String rand2 ='';
   String rand3 ='';
   String rand4 ='';
-
-
-
-  Future<void> launchUrlTest(String otp) async {
-    http.Response response;
-
-    response = await http.get(Uri.parse('https://maakview.com/otp/$otp/${widget.number}'));
-
-    //print(otp+' ' + phoneNumber);
-
-    if(response.statusCode==200){
-      print('okay');
-
-    } else {
-      throw Exception(('Failed to load'));
-    }
-
-  }
-
 
 
     void cleanText(){
@@ -105,8 +88,6 @@ class _OtpState extends State<Otp> {
 
     String otp = rand1+rand2+rand3+rand4;
 
-    launchUrlTest(otp);
-
   }
 
 
@@ -144,10 +125,10 @@ class _OtpState extends State<Otp> {
         appBar: AppBar(
           //backgroundColor: Colors.indigo[800],
           toolbarHeight: 148,
-          flexibleSpace:Image(image: AssetImage('assets/appbar_back/new_backlogo.png'),
+          /*flexibleSpace:Image(image: AssetImage('assets/appbar_back/new_backlogo.png'),
 
-            fit: BoxFit.none,) ,
-
+            fit: BoxFit.fill,) ,
+*/
 
 
           title: Column(
@@ -208,6 +189,7 @@ class _OtpState extends State<Otp> {
             SizedBox(height: 20,),
 
             Padding(
+
               padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -290,8 +272,13 @@ class _OtpState extends State<Otp> {
                     });
                     cleanText();
 
+                    //sendNumber();
+
                     Navigator.of(context).pushNamed(RouteManager.home);
 
+                    setState(() {
+                      isloading = true;
+                    });
 
 
                   } else{
@@ -303,13 +290,13 @@ class _OtpState extends State<Otp> {
                           counterOtp = 0;
                         });
                         cleanText();
+
+                        setState(() {
+                          isloading = false;
+                        });
                     };
 
                   launchUrl;
-
-
-
-
 
 
                 },

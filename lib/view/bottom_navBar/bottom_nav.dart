@@ -39,7 +39,10 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body:_widgetOptions[_selectedIndex],
+      body:IndexedStack(
+          index: _selectedIndex,
+          children: _widgetOptions ,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items:  <BottomNavigationBarItem>[

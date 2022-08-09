@@ -30,8 +30,25 @@ class _OrdersState extends State<Orders> {
           children: [
             Consumer<CartProvider>(
               builder: (context,value,child){
-                return ListView.builder(
-                  scrollDirection: Axis.vertical,
+                return value.orderView_list.length==0 ? Column(
+
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+
+                  children: [
+                    Image.asset('assets/order/no_cart.jpg',fit: BoxFit.cover,),
+
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text('Your shopping bag is empty. Start shopping.',style: TextStyle(
+                        //fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),),
+                    ),
+                  ],
+
+                ) : ListView.builder(
+                    scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     itemCount: value.orderView_list.length,
                     itemBuilder: (context,index)
@@ -56,7 +73,7 @@ class _OrdersState extends State<Orders> {
                               Text('৳ '+value.orderView_list[index].all_price.toString(),style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20)),
                               IconButton(onPressed: () {
                                 value.deleteCart(index);
-                                }, icon: const Icon(Icons.delete,color: Colors.red,)),
+                              }, icon: const Icon(Icons.delete,color: Colors.red,)),
 
                             ],
                           ),
@@ -113,31 +130,31 @@ class _OrdersState extends State<Orders> {
 
       persistentFooterButtons: [
         Consumer<CartProvider>(
-          builder: (context,value,child){
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('Total Amount'),
-                Container(child: Text('৳ '+value.total_price.toString(),style: TextStyle(
-                  fontSize: 20,fontWeight: FontWeight.bold
-                ),)),
-                IconButton(
-                  icon: Icon(Icons.payment_outlined),
-                  onPressed: (){
+            builder: (context,value,child){
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('Total Amount'),
+                  Container(child: Text('৳ '+value.total_price.toString(),style: TextStyle(
+                      fontSize: 20,fontWeight: FontWeight.bold
+                  ),)),
+                  IconButton(
+                    icon: Icon(Icons.payment_outlined),
+                    onPressed: (){
 
-                    //Navigator.of(context).pushNamed(RouteManager.payment);
+                      //Navigator.of(context).pushNamed(RouteManager.payment);
 
 
-                  },
-                ),
-                ElevatedButton(onPressed: (){
-                  Navigator.of(context).pushNamed(RouteManager.pos);
+                    },
+                  ),
+                  ElevatedButton(onPressed: (){
+                    Navigator.of(context).pushNamed(RouteManager.pos);
 
-                 }, child: Text('CHECK OUT'))
-              ],
-            );
-        }
+                  }, child: Text('CHECK OUT'))
+                ],
+              );
+            }
 
         )
       ],
@@ -146,4 +163,3 @@ class _OrdersState extends State<Orders> {
     );
   }
 }
-
