@@ -5,8 +5,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http ;
+import 'package:maakview_app/view/loading_screen/loading_screen.dart';
 import '../../model/home/home_banner.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 
@@ -52,7 +55,7 @@ class _SlideShowDataState extends State<SlideShowData> {
             return Text('${snapshot.error}');
           }
 
-          return Center(child: const CircularProgressIndicator());
+          return CircularProgressIndicator(color: Colors.white,) ;
         },
       ),
     );
@@ -79,7 +82,10 @@ class _SlideShowDataState extends State<SlideShowData> {
   }*/
   Widget buildSlider(BannerModel bannerModel) {
 
-    return Stack(
+    bool isloading = false;
+
+    return isloading ? LoadingScreen():
+    Stack(
       alignment: Alignment.bottomCenter,
       children: [
         CarouselSlider.builder(
@@ -102,17 +108,17 @@ class _SlideShowDataState extends State<SlideShowData> {
 
             options: CarouselOptions(
 
-              height: 200.0,
-              enlargeCenterPage: true,
-              autoPlay: true,
-              enableInfiniteScroll: true,
-              autoPlayAnimationDuration: Duration(microseconds: 800),
-              viewportFraction: 1,
-              onPageChanged: (index,reason)=>
-                  setState(() {
-                    activeIndex = index;
-                    //print(activeIndex);
-                  })
+                height: 200.0,
+                enlargeCenterPage: true,
+                autoPlay: true,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: Duration(microseconds: 800),
+                viewportFraction: 1,
+                onPageChanged: (index,reason)=>
+                    setState(() {
+                      activeIndex = index;
+                      //print(activeIndex);
+                    })
 
             )
         ),

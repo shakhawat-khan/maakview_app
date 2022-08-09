@@ -58,7 +58,7 @@ class _PopularCategoriesDataState extends State<PopularCategoriesData> {
           } else if(snapshot.hasError){
             return Text('${snapshot.error}');
           }
-          return Center(child: const CircularProgressIndicator());
+          return CircularProgressIndicator(color: Colors.white,);
         },
       ),
     );

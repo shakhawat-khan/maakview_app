@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/home/flash_sale_model.dart';
@@ -55,7 +56,7 @@ class FlashSaleData extends StatelessWidget {
             return Text('${snapshot.error}');
           }
 
-          return Center(child: const CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator(color: Colors.white,));
 
         },
       ),
@@ -90,15 +91,27 @@ class FlashSaleData extends StatelessWidget {
                 },
                 child: Container(
 
-                  width: 165,
+                  width: 160,
 
                   child: Card(
                     elevation: 5,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
                       child: Column(
+
+                        //Image.network(data.thumbnailImage,height: 140,width: 100,),
+
                         children: [
-                          Image.network(data.thumbnailImage,fit: BoxFit.fitWidth,),
+                          Container(
+                            child: CachedNetworkImage(
+
+                              imageUrl: data.thumbnailImage,
+                              filterQuality: FilterQuality.low,
+                              height: 140,width: 100,
+
+                            ),
+                            alignment: Alignment.center,
+                          ),
                           Row(
                             children: [
 
@@ -106,7 +119,7 @@ class FlashSaleData extends StatelessWidget {
                               Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                               //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                               Spacer(),
-                              LikeButton(size: 15,)
+                              LikeButton(size: 20,)
                             ],
                           ),
                           SizedBox(height: 10,),
@@ -115,8 +128,9 @@ class FlashSaleData extends StatelessWidget {
                               child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
                           ),
                           //SizedBox(height: 10,),
-                          Spacer(),
+                          SizedBox(height: 16,),
                           Container(height: 20,width: 105,
+                              alignment: Alignment.center,
                               child: Consumer<CartProvider>(
                                 builder: (context,value,child){
                                   return ElevatedButton(onPressed: (){
@@ -152,114 +166,127 @@ class FlashSaleData extends StatelessWidget {
                   ),
                 ),
               )
-                  : InkWell(
-                onTap: (){
-                  Navigator.of(context).pushNamed(RouteManager.most_popular_product_details,arguments: {'slug' : data.slug });
-                },
-                child: Container(
+                    : InkWell(
+                    onTap: (){
+                      Navigator.of(context).pushNamed(RouteManager.most_popular_product_details,arguments: {'slug' : data.slug });
+                    },
+                    child: Container(
 
-                  width: 150,
+                      width: 160,
 
-                  child: Card(
-                    elevation: 5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Stack(
-                          //mainAxisAlignment: MainAxisAlignment.start,
-                          //alignment: Alignment.topLeft,
-                          children: [
+                    child: Card(
+                      elevation: 5,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Stack(
+                            //mainAxisAlignment: MainAxisAlignment.start,
+                            //alignment: Alignment.topLeft,
+                            children: [
 
-                            Container(
-                              height: 20,
-                              width: 40,
-                              color: Colors.red,
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'OFF ${discount} %',
-                                  style: TextStyle(color: Colors.white,fontSize: 9,fontWeight: FontWeight.w600),
+                              Container(
+                                height: 20,
+                                width: 40,
+                                color: Colors.red,
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'OFF ${discount} %',
+                                    style: TextStyle(color: Colors.white,fontSize: 9,fontWeight: FontWeight.w600),
+                                  ),
                                 ),
                               ),
-                            ),
 
-                            Container(
-                              child: Image.network(data.thumbnailImage,height: 140,width: 100,),
-                              alignment: Alignment.center,
-                            ),
+                              //Image.network(data.thumbnailImage,height: 140,width: 100,)
 
-                          ],
-                        ),
+                              Container(
+                                child:CachedNetworkImage(
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text('৳'+'${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold,color: Colors.grey,decoration: TextDecoration.lineThrough)),
-                        ),
+                                  imageUrl: data.thumbnailImage,
+                                  filterQuality: FilterQuality.low,
+                                  height: 140,width: 100,
 
-                        Row(
-                          children: [
+                                ) ,
+                                alignment: Alignment.center,
+                              ),
 
-                            Padding(
-
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                            ),
-                            Text('${oCcy.format(data.baseDiscountedPrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                            //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                            SizedBox(width:25 ,),
-                            LikeButton(size: 15,)
-                          ],
-                        ),
-                        //SizedBox(height: 10,),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
-                          child: SizedBox(
-                              height: 30,
-                              child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
+                            ],
                           ),
-                        ),
 
-                        SizedBox(height: 3,),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text('৳'+'${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold,color: Colors.grey,decoration: TextDecoration.lineThrough)),
+                          ),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Container(height: 20,width: 102,
-                              child: Consumer<CartProvider>(
-                                builder: (context,value,child){
-                                  return ElevatedButton(onPressed: (){
+                          Row(
+                            children: [
 
-                                    //context.read<CartProvider>().addCounter();
-                                    //print('hello');
-                                    //print(value.counter);
+                              Padding(
 
-                                    value.checkCart(data.id);
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('৳',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                              ),
+                              Text('${oCcy.format(data.baseDiscountedPrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                              //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                              Spacer(),
+                              Container(
+                                  padding: EdgeInsets.only(right: 10),
+                                  child: LikeButton(size: 20,),)
+                            ],
+                          ),
+                          //SizedBox(height: 10,),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                            child: SizedBox(
+                                height: 30,
+                                child: Text(data.name,style: TextStyle(fontSize: 10,color: Colors.grey),overflow:TextOverflow.ellipsis,maxLines: 2,)
+                            ),
+                          ),
 
-                                    context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.baseDiscountedPrice,1,data.id,data.baseDiscountedPrice,);
+                          SizedBox(height: 3,),
 
-                                    Fluttertoast.showToast(msg: '${value.addCart_check}' ,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 2,
-                                        backgroundColor: Colors.grey);
+                          Padding(
+                            padding: const EdgeInsets.only(left: 25),
+                            child: Container(
+                                height: 20,
+                                width: 103,
+                                alignment: Alignment.center,
+                                child: Consumer<CartProvider>(
+                                  builder: (context,value,child){
+                                    return ElevatedButton(onPressed: (){
+
+                                      //context.read<CartProvider>().addCounter();
+                                      //print('hello');
+                                      //print(value.counter);
+
+                                      value.checkCart(data.id);
+
+                                      context.read<CartProvider>().addProductCart(data.thumbnailImage,data.name,data.baseDiscountedPrice,1,data.id,data.baseDiscountedPrice,);
+
+                                      Fluttertoast.showToast(msg: '${value.addCart_check}' ,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 2,
+                                          backgroundColor: Colors.grey);
 
 
+                                    },
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.shopping_cart,size: 15,),
+                                          Text('Add to cart',style: TextStyle(fontSize: 9),),
+                                        ],
+                                      ),
+                                    );
                                   },
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.shopping_cart,size: 15,),
-                                        Text('Add to cart',style: TextStyle(fontSize: 9),),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              )
+                                )
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ) ,
+                ) ,
             );
 
           }

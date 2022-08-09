@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 
 import '../../../model/home/most_popular_banner_model.dart';
@@ -39,19 +37,20 @@ class FlashSaleBannerData extends StatelessWidget {
             return Text('${snapshot.error}');
           }
 
-          return Center(child:CircularProgressIndicator());
+          return Center(child:CircularProgressIndicator(color: Colors.white,));
         },
       ),
     );
 
   }
 
-  buildSlider(MostPopularBannerModel mostPopularBannerModel,BuildContext context){
+  buildSlider(MostPopularBannerModel mostPopularBannerModel,
+      BuildContext context){
     final data = mostPopularBannerModel.data[0].img;
     return InkWell(
       onTap: (){},
       child: Container(
-        height: 100,
+        //height: 100,
         width: MediaQuery.of(context).size.width,
         child: Image.network(data,fit: BoxFit.fill,),
       ),
