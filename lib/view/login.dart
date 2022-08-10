@@ -3,8 +3,10 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maakview_app/provider/from_login_to_responsePhoneNumber.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../routes/routes.dart';
 import 'package:http/http.dart' as http ;
@@ -193,40 +195,45 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
               Container(
                 height: 45,
                 width: 355,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.indigo[900]),
-                  onPressed:
+                child: Consumer<LoginToHome>(
+                  builder: (context,value,child){
 
-                   () {
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: Colors.indigo[900]),
+                      onPressed:
 
-                    if (isChecked == false ||
-                        formKey.currentState!.validate() == false) {
-                      //print('error');
-                    } else {
-                      //phoneNumber = value!;
-                      //Navigator.of(context).push(MaterialPageRoute(
-                        //  builder: (context) => Otp(number: phoneNumber)));
-                      //print(phoneNumber);
-                      Navigator.of(context).pushNamed(RouteManager.otpPage,arguments:
+                          () {
+
+                        if (isChecked == false ||
+                            formKey.currentState!.validate() == false) {
+                          //print('error');
+                        } else {
+                          //phoneNumber = value!;
+                          //Navigator.of(context).push(MaterialPageRoute(
+                          //  builder: (context) => Otp(number: phoneNumber)));
+                          //print(phoneNumber);
+
+                          value.catchNumber(phoneNumber);
+
+
+                          Navigator.of(context).pushNamed(RouteManager.otpPage,arguments:
 
                           {'number': phoneNumber,},
 
+                          );
+                        };
 
-
-                      );
-                    };
-
-
-
-
+                      },
+                      child: Text(
+                        'Login',
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 12),
+                            fontWeight: FontWeight.w500),
+                      ),
+                    );
 
                   },
-                  child: Text(
-                    'Login',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontSize: 12),
-                        fontWeight: FontWeight.w500),
-                  ),
+
                 ),
               ),
               SizedBox(

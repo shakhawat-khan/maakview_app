@@ -16,7 +16,7 @@ import '../../../routes/routes.dart';
 
 class MostPopularData extends StatelessWidget {
 
-  final ScrollController _controller = ScrollController();
+  //final ScrollController _controller = ScrollController();
 
   Future<MostPopularModel> getPopularData() async{
     http.Response response;
@@ -64,7 +64,9 @@ class MostPopularData extends StatelessWidget {
       height: 270,
       width: double.infinity,
       child: ListView.builder(
-        controller:  _controller,
+
+        controller:ScrollController() ,
+
         scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           itemCount: mostPopularModel.data.products.data.length,

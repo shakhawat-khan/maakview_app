@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../controller/home/auth/response_phone_number_data.dart';
 import '../../model/home/auth/response_post_phone_number.dart';
 import '../../routes/routes.dart';
 import 'lib/routes/routes.dart';
@@ -37,6 +38,8 @@ class _OtpState extends State<Otp> {
   Random random = Random();
   bool isloading = false ;
 
+  String otp = '';
+
 
   TextEditingController _controller1 = TextEditingController();
   final fieldText1 = TextEditingController();
@@ -56,6 +59,23 @@ class _OtpState extends State<Otp> {
     fieldText3.clear();
     fieldText4.clear();
   }
+
+  Future<void> launchUrlTest(String otp) async {
+    http.Response response;
+
+    response = await http.get(Uri.parse('https://maakview.com/otp/$otp/${widget.number}'));
+
+    //print(otp+' ' + phoneNumber);
+
+    if(response.statusCode==200){
+      print('okay');
+
+    } else {
+      throw Exception(('Failed to load'));
+    }
+
+  }
+
 
 
   void startTimer()
@@ -86,7 +106,7 @@ class _OtpState extends State<Otp> {
     rand3 = random.nextInt(10).toString();
     rand4 = random.nextInt(10).toString();
 
-    String otp = rand1+rand2+rand3+rand4;
+     otp = rand1+rand2+rand3+rand4;
 
   }
 
@@ -94,8 +114,11 @@ class _OtpState extends State<Otp> {
   @override
   void initState() {
 
+
+
     startTimer();
     genRandomNumber();
+    launchUrlTest(otp);
 
     super.initState();
 
@@ -104,6 +127,8 @@ class _OtpState extends State<Otp> {
   @override
   void dispose() {
     startTimer();
+    genRandomNumber();
+    launchUrlTest(otp);
 
     super.dispose();
   }
@@ -276,6 +301,8 @@ class _OtpState extends State<Otp> {
 
                     Navigator.of(context).pushNamed(RouteManager.home);
 
+                    //ResponseNumber();
+
                     setState(() {
                       isloading = true;
                     });
@@ -296,7 +323,7 @@ class _OtpState extends State<Otp> {
                         });
                     };
 
-                  launchUrl;
+
 
 
                 },

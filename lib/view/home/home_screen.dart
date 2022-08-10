@@ -10,6 +10,7 @@ import 'package:maakview_app/controller/home/most_popular_data/most_popular_data
 import 'package:maakview_app/view/flash_sale/flash_sale.dart';
 import 'package:maakview_app/view/loading_screen/loading_screen.dart';
 import 'package:marquee_widget/marquee_widget.dart';
+import '../../controller/home/auth/response_phone_number_data.dart';
 import '../../controller/home/flash_sale_banner_data.dart';
 import '../../controller/home/flash_sale_data.dart';
 import '../../controller/home/home_banner_data.dart';
@@ -24,6 +25,7 @@ import '../../controller/home/most_popular_banner_data.dart';
 
 
 class Home extends StatefulWidget {
+
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -35,39 +37,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     int selectedIndex = 0;
     return Scaffold(
-      endDrawer: Drawer(
-        //backgroundColor: Colors.black,
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      endDrawer: ResponseNumber(),
       backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
@@ -92,7 +62,10 @@ class _HomeState extends State<Home> {
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
+            //physics: const BouncingScrollPhysics(),
             child: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
                 Container(
@@ -114,50 +87,44 @@ class _HomeState extends State<Home> {
 
                 SlideShowData(),
 
-
                 SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
+
+              Row(
+                children: [
+                  Text(
                       'Popular Categories',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(fontSize: 16),
-                          fontWeight: FontWeight.w500),
-                ),
-
-                    RawMaterialButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(RouteManager.view_all_categories);
-
-                      },
-                      child: Text(
-                        'View All >',
-                        style: TextStyle(color: Colors.indigo),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500
                       ),
+                  ),
+
+                  Spacer(),
+
+                  RawMaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(RouteManager.view_all_categories);
+
+                    },
+
+                    child: Text(
+                      'View All >',
+                      style: TextStyle(color: Colors.indigo),
                     ),
-                  ],
-                ),
-
-
+                  ),
+                ],
+              ),
 
                 PopularCategoriesData(),
-                //MostPopularData(),
-
-               /* SvgPicture.network(
-                  'https://upload.wikimedia.org/wikipedia/commons/b/b4/Chess_ndd45.svg',
-                  placeholderBuilder: (BuildContext context) => Container(
-                      padding: const EdgeInsets.all(30.0),
-                      child: const CircularProgressIndicator()),
-                ),*/
 
                 Row(
                   children: [
                     Text(
                       'Most Popular',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(fontSize: 16),
-                          fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500
+                      ),
                     ),
                   ],
                 ),
@@ -170,15 +137,9 @@ class _HomeState extends State<Home> {
 
                 SizedBox(height: 18,),
 
-                Row(
-                  children: [
-                    Text(
-                      'Flash Sale',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(fontSize: 16),
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
+                Text(
+                  'Flash Sale',
+                  style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500)
                 ),
 
                 FlashSaleData(),
@@ -193,9 +154,10 @@ class _HomeState extends State<Home> {
                   children: [
                     Text(
                       'Laptop',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(fontSize: 16),
-                          fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500
+                      )
                     ),
                   ],
                 ),
@@ -214,9 +176,10 @@ class _HomeState extends State<Home> {
                   children: [
                     Text(
                       'Mobile & Gadgets',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(fontSize: 16),
-                          fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500
+                      )
                     ),
                   ],
                 ),
@@ -224,6 +187,22 @@ class _HomeState extends State<Home> {
                 MobileGadgets(),
 
                 SizedBox(height: 15,),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

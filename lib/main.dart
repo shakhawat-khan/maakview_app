@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maakview_app/provider/add_cart.dart';
+import 'package:maakview_app/provider/from_login_to_responsePhoneNumber.dart';
 import 'package:maakview_app/provider/otp_varification_provider.dart';
 import 'package:maakview_app/routes/routes.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
@@ -22,6 +23,8 @@ class Test extends StatelessWidget {
 
       ChangeNotifierProvider(create: (context)=> CartProvider() ),
       ChangeNotifierProvider(create: (context)=>OtpVerification()),
+      ChangeNotifierProvider(create: (context)=> LoginToHome() ),
+
 
     ],
 
