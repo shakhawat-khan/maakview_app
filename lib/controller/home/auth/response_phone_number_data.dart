@@ -8,6 +8,7 @@ import 'package:maakview_app/provider/from_login_to_responsePhoneNumber.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/home/auth/response_post_phone_number.dart';
+import '../../../view/auth/update_name_address_phone.dart';
 
 
 class ResponseNumber extends StatelessWidget {
@@ -59,31 +60,41 @@ class ResponseNumber extends StatelessWidget {
             children: <Widget>[
               DrawerHeader(
 
-                child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage('https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png'),
-                          fit: BoxFit.cover,
+                child:InkWell(
+                  onTap: (){
 
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>  UpdateInfo()),
+                    );
+
+                  },
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: NetworkImage('https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png'),
+                            fit: BoxFit.cover,
+
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 5,),
-                    Row(
-                      children: [
-                        Text('Name  '),
-                        Text(data.name),
-                      ],
-                    ),
+                      SizedBox(height: 5,),
+                      Row(
+                        children: [
+                          Text('Name  '),
+                          Text(data.name),
+                        ],
+                      ),
 
-                  ],
+                    ],
+                  ),
                 ),
                 decoration: BoxDecoration(
                   color: Colors.indigo[50],

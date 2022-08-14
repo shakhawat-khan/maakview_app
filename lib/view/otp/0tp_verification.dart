@@ -114,8 +114,6 @@ class _OtpState extends State<Otp> {
   @override
   void initState() {
 
-
-
     startTimer();
     genRandomNumber();
     launchUrlTest(otp);
@@ -135,9 +133,6 @@ class _OtpState extends State<Otp> {
 
 
   final formKey = GlobalKey<FormState>();
-
-
-
 
 
     @override
