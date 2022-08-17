@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../../model/home/auth/response_post_phone_number.dart';
 import '../../../view/auth/update_name_address_phone.dart';
+import '../../../view/onBording.dart';
 
 
 class ResponseNumber extends StatelessWidget {
@@ -54,10 +55,9 @@ class ResponseNumber extends StatelessWidget {
       builder: (context,value,child){
         return Drawer(
           //backgroundColor: Colors.indigo,
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
+          child: Column(
             children: <Widget>[
+
               DrawerHeader(
 
                 child:InkWell(
@@ -88,36 +88,108 @@ class ResponseNumber extends StatelessWidget {
                       SizedBox(height: 5,),
                       Row(
                         children: [
-                          Text('Name  '),
-                          Text(data.name),
+                          Text('Name  ',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w800),),
+                          Text(data.name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w800),),
                         ],
                       ),
-
                     ],
                   ),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.indigo[50],
+                  color: Colors.indigo,
                 ),
               ),
+
+
+
+
               ListTile(
-                title: Text(data.id.toString()),
-                onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
-                },
+                hoverColor: Colors.blue,
+                dense: true,
+                visualDensity: VisualDensity(vertical: -4),
+                leading: Icon(
+                  Icons.local_offer,
+                  color: Colors.indigo,
+                ),
+                title: Text('Offers',style: TextStyle(fontSize: 15),),
+                onTap: () {},
+              ),
+              Divider(
+                color: Colors.grey,
               ),
               ListTile(
-                title: Text(data.email),
-                onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
-                },
+                hoverColor: Colors.blue,
+                dense: true,
+                visualDensity: VisualDensity(vertical: -4),
+                leading: Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                ),
+                title: Text('Favorites',style: TextStyle(fontSize: 15),),
+                onTap: () { },
               ),
+              Divider(
+                color: Colors.grey,
+              ),
+              ListTile(
+                hoverColor: Colors.blue,
+                dense: true,
+                visualDensity: VisualDensity(vertical: -4),
+                leading: Icon(
+                  Icons.history,
+                  color: Colors.indigo,
+                ),
+                title: Text('Order history',style: TextStyle(fontSize: 15),),
+                onTap: () {},
+              ),
+              Divider(
+                color: Colors.grey,
+              ),
+
+              ListTile(
+                hoverColor: Colors.blue,
+                dense: true,
+                visualDensity: VisualDensity(vertical: -4),
+                leading: Icon(
+                  Icons.history,
+                  color: Colors.indigo,
+                ),
+                title: Text(data.id.toString(),style: TextStyle(fontSize: 15),),
+                onTap: () {},
+              ),
+              Divider(
+                color: Colors.grey,
+              ),
+
+              Expanded(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: ListTile(
+                    hoverColor: Colors.blue,
+                    dense: true,
+                    visualDensity: VisualDensity(vertical: -4),
+                    leading: Icon(
+                      Icons.logout,
+                      color: Colors.indigo,
+                    ),
+                    title: Text('Logout',style: TextStyle(fontSize: 15)),
+                    onTap: () {
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => OnBoard()),
+                      );
+
+
+                    },
+                  ),
+                ),
+              ),
+
+              SizedBox(
+                height: 20,
+              )
+
             ],
           ),
         );

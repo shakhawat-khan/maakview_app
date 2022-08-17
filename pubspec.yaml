@@ -101,6 +101,7 @@ flutter:
     - assets/onBoarding_screen/
     - assets/payment/
     - assets/order/no_cart.jpg
+    - assets/up_to_date/OK-GIF.gif
 
   #   - images/a_dot_ham.jpeg
 

@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class LoginToHome with ChangeNotifier{
 
-  String number='0';
+  String number='';
 
 
   Future<ResponsePostNumber>getData() async{
