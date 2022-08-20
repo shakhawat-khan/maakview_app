@@ -45,8 +45,10 @@ class Test extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: RouteManager.home,
+        initialRoute: RouteManager.splash,
+
         onGenerateRoute: RouteManager.generateRoute,
+        home: BottomAppBar(),
 
 
       ),

@@ -45,9 +45,12 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
       appBar: AppBar(
         //backgroundColor: Colors.indigo[800],
         toolbarHeight: 138,
+        automaticallyImplyLeading: false,
         /*flexibleSpace:Image(image: AssetImage('assets/appbar_back/new_backlogo.png'),
 
             fit: BoxFit.cover,) ,*/
+
+
 
         title: Column(
           children: [
@@ -239,7 +242,7 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
               SizedBox(
                 height: 26,
               ),
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
@@ -260,11 +263,11 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
                     color: Colors.grey,
                   ),
                 ],
-              ),
+              ),*/
               SizedBox(
                 height: 37,
               ),
-              Row(
+             /* Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
@@ -339,7 +342,7 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
                     ),
                   ),
                 ],
-              )
+              )*/
             ],
           ),
         ),

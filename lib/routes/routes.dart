@@ -18,6 +18,7 @@ import '../view/details_most_popular_data/details_data.dart';
 import '../view/orders/orders.dart';
 import '../view/payment/payment.dart';
 import '../view/pos/pos.dart';
+import '../view/splash_screen/splash.dart';
 
 
 
@@ -35,6 +36,7 @@ class RouteManager  {
   static const String bkash = '/bkash';
   static const String most_popular_product_details = '/most_popular_product_details';
   static const String order = '/order';
+  static const String splash = '/splash';
 
 
 
@@ -78,6 +80,11 @@ class RouteManager  {
       case home:
         return MaterialPageRoute(builder: (context){
           return BottomNav();
+        });
+
+      case splash:
+        return MaterialPageRoute(builder: (context){
+          return SplashView();
         });
 
 

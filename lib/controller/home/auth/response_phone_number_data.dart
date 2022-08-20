@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:maakview_app/provider/from_login_to_responsePhoneNumber.dart';
+import 'package:maakview_app/view/login.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/home/auth/response_post_phone_number.dart';
+import '../../../services/shared_preferences_service.dart';
 import '../../../view/auth/update_name_address_phone.dart';
 import '../../../view/onBording.dart';
 
@@ -50,6 +52,7 @@ class ResponseNumber extends StatelessWidget {
 
   buildAuth(ResponsePostNumber responsePostNumber , BuildContext context){
     final data = responsePostNumber.user;
+    PrefService _perfService = PrefService();
 
     return Consumer<LoginToHome>(
       builder: (context,value,child){
@@ -146,20 +149,7 @@ class ResponseNumber extends StatelessWidget {
                 color: Colors.grey,
               ),
 
-              ListTile(
-                hoverColor: Colors.blue,
-                dense: true,
-                visualDensity: VisualDensity(vertical: -4),
-                leading: Icon(
-                  Icons.history,
-                  color: Colors.indigo,
-                ),
-                title: Text(data.id.toString(),style: TextStyle(fontSize: 15),),
-                onTap: () {},
-              ),
-              Divider(
-                color: Colors.grey,
-              ),
+
 
               Expanded(
                 child: Align(
@@ -173,12 +163,17 @@ class ResponseNumber extends StatelessWidget {
                       color: Colors.indigo,
                     ),
                     title: Text('Logout',style: TextStyle(fontSize: 15)),
-                    onTap: () {
+                    onTap: () async{
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => OnBoard()),
-                      );
+                     _perfService.removeCache('password').whenComplete((){
+
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => MyApp()),
+                       );
+
+
+                     });
 
 
                     },

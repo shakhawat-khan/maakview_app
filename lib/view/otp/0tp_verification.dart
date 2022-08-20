@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maakview_app/services/shared_preferences_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../controller/home/auth/response_phone_number_data.dart';
@@ -13,6 +14,9 @@ import 'lib/routes/routes.dart';
 import 'package:http/http.dart' as http ;
 import '../login.dart';
 import 'dart:math';
+import 'package:sms_autofill/sms_autofill.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Otp extends StatefulWidget {
   String number;
@@ -39,6 +43,11 @@ class _OtpState extends State<Otp> {
   bool isloading = false ;
 
   String otp = '';
+
+  PrefService _perfService = PrefService();
+
+  //final String signature = await SmsAutoFill().getAppSignature;
+
 
 
   TextEditingController _controller1 = TextEditingController();
@@ -265,7 +274,7 @@ class _OtpState extends State<Otp> {
             SizedBox(height: 20,),
 
             ElevatedButton(
-                onPressed: (){
+                onPressed: () async{
                   //print(counterOtp);
 
 
@@ -282,43 +291,43 @@ class _OtpState extends State<Otp> {
 
                   cleanText();*/
 
-                  if(counterOtp==4){
-                    Fluttertoast.showToast(msg: 'correct' ,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 2,
-                    backgroundColor: Colors.grey);
-                    setState(() {
-                      counterOtp = 0;
-                    });
-                    cleanText();
+                  _perfService.createCache('password').whenComplete(() {
 
-                    //sendNumber();
+                    if(counterOtp==4){
+                      Fluttertoast.showToast(msg: 'correct' ,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 2,
+                          backgroundColor: Colors.grey);
+                      setState(() {
+                        counterOtp = 0;
+                      });
+                      cleanText();
+                      //sendNumber();
 
-                    Navigator.of(context).pushNamed(RouteManager.home);
+                      Navigator.of(context).pushNamed(RouteManager.home);
 
-                    //ResponseNumber();
+                      //ResponseNumber();
 
-                    setState(() {
-                      isloading = true;
-                    });
+                      setState(() {
+                        isloading = true;
+                      });
 
 
-                  } else{
-                        Fluttertoast.showToast(msg: 'Incorrect' ,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 2,
-                        backgroundColor: Colors.grey);
-                        setState(() {
-                          counterOtp = 0;
-                        });
-                        cleanText();
+                    } else{
+                      Fluttertoast.showToast(msg: 'Incorrect' ,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 2,
+                          backgroundColor: Colors.grey);
+                      setState(() {
+                        counterOtp = 0;
+                      });
+                      cleanText();
 
-                        setState(() {
-                          isloading = false;
-                        });
+                      setState(() {
+                        isloading = false;
+                      });
                     };
-
-
+                  });
 
 
                 },

@@ -87,7 +87,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
 
     TextEditingController textFieldController1 = TextEditingController(text: data.name);
     TextEditingController textFieldController2 = TextEditingController(text: data.email);
-    TextEditingController textFieldController3 = TextEditingController(text: data.phone);
+    TextEditingController textFieldController3 = TextEditingController();
 
 
 
@@ -197,13 +197,14 @@ class _UpdateInfoState extends State<UpdateInfo> {
 */
 
 
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
+                  height: 100,
                   child: TextField(
                     controller: textFieldController3,
                     decoration: InputDecoration(
                       labelText: 'Address',
-                      prefixIcon: Icon(Icons.phone_android,color: Colors.indigo,),
+                      prefixIcon: Icon(Icons.location_city,color: Colors.indigo,),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         borderSide: BorderSide(
@@ -231,7 +232,6 @@ class _UpdateInfoState extends State<UpdateInfo> {
                 ElevatedButton(
                     onPressed: (){
 
-
                       print(email);
                       print(name);
                       print(number);
@@ -243,7 +243,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
                           id: data.id.toString(),
                           name:textFieldController1.text ,
                           email: textFieldController2.text,
-                          phone: textFieldController3.text,
+                          phone: data.phone.toString(),
 
                         )),
                       );
@@ -264,7 +264,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
           ),
         ],
       ),
-    )
+    );
 
   }
 

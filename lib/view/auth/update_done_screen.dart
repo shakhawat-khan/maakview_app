@@ -5,6 +5,8 @@ import 'package:maakview_app/view/home/home_screen.dart';
 
 import 'package:http/http.dart' as http ;
 
+import '../bottom_navBar/bottom_nav.dart';
+
 
 
 class UpdateDone extends StatefulWidget {
@@ -117,7 +119,7 @@ class _UpdateDoneState extends State<UpdateDone> {
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Home()),
+                    MaterialPageRoute(builder: (context) => BottomNav()),
                   );
 
                 },

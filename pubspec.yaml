@@ -58,6 +58,7 @@ dependencies:
   flutter_html: ^3.0.0-alpha.3
   flutter_spinkit: ^5.1.0
   shared_preferences: ^2.0.15
+  sms_autofill: ^2.2.0
 
 
 
