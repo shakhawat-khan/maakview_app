@@ -1,8 +1,5 @@
 import 'dart:convert';
 
-
-import 'dart:convert';
-
 import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
@@ -16,6 +13,7 @@ import 'package:flutter_html/flutter_html.dart';
 import '../../../provider/add_cart.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 
 class DetailsMostPopularData extends StatelessWidget {
 

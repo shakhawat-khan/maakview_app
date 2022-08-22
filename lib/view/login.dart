@@ -7,6 +7,7 @@ import 'package:maakview_app/provider/from_login_to_responsePhoneNumber.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
 import 'package:provider/provider.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../routes/routes.dart';
 import 'package:http/http.dart' as http ;
@@ -205,7 +206,7 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
                       style: ElevatedButton.styleFrom(primary: Colors.indigo[900]),
                       onPressed:
 
-                          () {
+                          () async{
 
                         if (isChecked == false ||
                             formKey.currentState!.validate() == false) {

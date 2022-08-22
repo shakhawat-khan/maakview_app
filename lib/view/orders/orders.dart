@@ -92,10 +92,10 @@ class _OrdersState extends State<Orders> {
 
                                       },
 
-                                      child: Icon(Elusive.minus_circled,size: 15,color: Colors.indigo,)
+                                      child: Icon(Elusive.minus_circled,size: 18,color: Colors.indigo,)
                                   ),
                                   SizedBox(width: 10,),
-                                  Text(value.orderView_list[index].quantity.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                                  Text(value.orderView_list[index].quantity.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),overflow:TextOverflow.ellipsis,maxLines: 2,),
                                   SizedBox(width: 10,),
                                   InkWell(
                                       onTap: (){
@@ -109,7 +109,7 @@ class _OrdersState extends State<Orders> {
 
 
                                       },
-                                      child: Icon(Elusive.plus_circled,size: 15,color: Colors.indigo,)
+                                      child: Icon(Elusive.plus_circled,size: 18,color: Colors.indigo,)
                                   )
                                 ],
                               );

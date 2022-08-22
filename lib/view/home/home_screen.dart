@@ -36,6 +36,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     int selectedIndex = 0;
+    String search_value = '';
     return Scaffold(
       endDrawer: ResponseNumber(),
       backgroundColor: Colors.white,
@@ -75,9 +76,18 @@ class _HomeState extends State<Home> {
 
                     borderRadius: BorderRadius.circular(10),
 
-                    onChanged: (value){},
+                    onChanged: (value){
 
-                    onSubmitted: (value){},
+                      setState(() {
+                        search_value = value;
+                      });
+                    },
+
+                    onSubmitted: (value){
+                      Navigator.of(context).pushNamed(RouteManager.search,arguments:
+                      {'keyword' : value}
+                      );
+                    },
 
                   ),
                 ),

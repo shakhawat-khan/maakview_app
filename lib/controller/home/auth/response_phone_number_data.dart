@@ -92,7 +92,7 @@ class ResponseNumber extends StatelessWidget {
                       Row(
                         children: [
                           Text('Name  ',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w800),),
-                          Text(data.name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w800),),
+                          Flexible(child: Text(data.name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w800),)),
                         ],
                       ),
                     ],

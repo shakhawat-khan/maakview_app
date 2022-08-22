@@ -126,6 +126,8 @@ class _OtpState extends State<Otp> {
     startTimer();
     genRandomNumber();
     launchUrlTest(otp);
+    _listotp();
+
 
     super.initState();
 
@@ -394,7 +396,6 @@ class _OtpState extends State<Otp> {
                     counterOtp = counterOtp+1;
                   });
                 }
-
               }
             },
 
@@ -426,6 +427,10 @@ class _OtpState extends State<Otp> {
         ),
       ),
     );
+  }
+
+  void _listotp() async{
+     await SmsAutoFill().listenForCode;
   }
 
 }

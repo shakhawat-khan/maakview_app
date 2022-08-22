@@ -9,6 +9,7 @@ import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/payment/Bkash.dart';
 import 'package:maakview_app/view/payment/cash_on_delivery.dart';
 import 'package:maakview_app/view/payment/payment.dart';
+import 'package:maakview_app/view/search/search_result_page.dart';
 import 'package:maakview_app/view/term_and_condition.dart';
 
 import '../controller/home/view_all_categories.dart';
@@ -37,7 +38,7 @@ class RouteManager  {
   static const String most_popular_product_details = '/most_popular_product_details';
   static const String order = '/order';
   static const String splash = '/splash';
-
+  static const String search = '/search';
 
 
 
@@ -121,6 +122,11 @@ class RouteManager  {
         case order:
         return MaterialPageRoute(builder: (context){
           return Orders();
+        });
+
+      case search:
+        return MaterialPageRoute(builder: (context){
+          return Result(keyword: valuePassed['keyword'],);
         });
 
 

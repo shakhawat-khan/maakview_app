@@ -59,6 +59,7 @@ dependencies:
   flutter_spinkit: ^5.1.0
   shared_preferences: ^2.0.15
   sms_autofill: ^2.2.0
+  pinch_zoom: ^1.0.0
 
 
 
@@ -103,6 +104,7 @@ flutter:
     - assets/payment/
     - assets/order/no_cart.jpg
     - assets/up_to_date/OK-GIF.gif
+    - assets/no_product_found/no-product.png
 
   #   - images/a_dot_ham.jpeg
 
