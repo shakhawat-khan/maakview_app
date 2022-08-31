@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 import 'package:maakview_app/view/bottom_navBar/bottom_nav.dart';
 import 'package:provider/provider.dart';
 import '../../controller/home/most_popular_data/details_most_popular_data.dart';
@@ -24,7 +25,7 @@ class DetailsData extends StatelessWidget {
           InkWell(
             onTap: (){
 
-              Navigator.of(context).pushNamed(RouteManager.order);
+              Navigator.of(context).pushNamed(RouteManager.order_two);
 
             },
             child: Consumer<CartProvider>(
@@ -51,6 +52,11 @@ class DetailsData extends StatelessWidget {
       ),
 
       body: DetailsMostPopularData(slug: slug,),
+
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {  },
+          child: LikeButton(),
+          backgroundColor: Colors.white) ,
 
       //bottomNavigationBar:BottomNav() ,
 

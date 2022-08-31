@@ -6,6 +6,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http ;
 import 'package:maakview_app/view/loading_screen/loading_screen.dart';
+import 'package:maakview_app/view/search/search_result_page.dart';
 import '../../model/home/home_banner.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -25,6 +26,7 @@ class _SlideShowDataState extends State<SlideShowData> {
 
   Future<BannerModel> getBanner() async {
     http.Response response;
+    //print('home banner');
     response = await http.get(
         Uri.parse('https://www.maakview.com/api/v1/setting/home/sliders'));
 
@@ -93,14 +95,32 @@ class _SlideShowDataState extends State<SlideShowData> {
             itemBuilder: (BuildContext context, int itemIndex, int
             pageViewIndex) {
               final data = bannerModel.data.one[itemIndex];
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                  width: MediaQuery.of(context).size.width,
-                  imageUrl:data.img ,
-                  filterQuality: FilterQuality.low,
-                  fit: BoxFit.fill,
+              return InkWell(
+                onTap: (){
+                  String temp = data.link;
 
+                  List x = temp.split('-');
+
+                  //print(x);
+
+                  List x2 = x[0].split('/');
+
+                  String keyword = x2[x2.length-1];
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Result(keyword: keyword)),
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: CachedNetworkImage(
+                    width: MediaQuery.of(context).size.width,
+                    imageUrl:data.img ,
+                    filterQuality: FilterQuality.low,
+                    fit: BoxFit.fill,
+
+                  ),
                 ),
               );
             },
@@ -112,7 +132,7 @@ class _SlideShowDataState extends State<SlideShowData> {
                 enlargeCenterPage: true,
                 autoPlay: true,
                 enableInfiniteScroll: true,
-                autoPlayAnimationDuration: Duration(microseconds: 800),
+                autoPlayAnimationDuration: Duration(microseconds: 1000),
                 viewportFraction: 1,
                 onPageChanged: (index,reason)=>
                     setState(() {

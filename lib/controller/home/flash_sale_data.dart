@@ -23,11 +23,19 @@ import '../../../model/home/most_popular_model.dart';
 import '../../../provider/add_cart.dart';
 import '../../../routes/routes.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
 
-class FlashSaleData extends StatelessWidget {
 
+class FlashSaleData extends StatefulWidget {
+
+  @override
+  State<FlashSaleData> createState() => _FlashSaleDataState();
+}
+
+class _FlashSaleDataState extends State<FlashSaleData> {
   Future<FlashSaleModel> getFlashSaleData()async{
     http.Response response;
+
 
     response = await http.get(Uri.parse('https://www.maakview.com/api/v1/setting/home/product_section_two'));
 
@@ -37,6 +45,23 @@ class FlashSaleData extends StatelessWidget {
       throw Exception('Failed to load');
     }
 
+
+  }
+
+  late SharedPreferences sharedPreferences;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+  void initalGetSavedData() async{
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  void storeData(){
 
   }
 
@@ -80,6 +105,7 @@ class FlashSaleData extends StatelessWidget {
             final data = flashSaleModel.data.products.data[index];
             final discount1 = (data.baseDiscountedPrice/data.basePrice)*100 ;
             final discount = (100-discount1).ceil();
+
 
             return Container(
 

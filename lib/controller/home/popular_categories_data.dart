@@ -32,12 +32,19 @@ class _PopularCategoriesDataState extends State<PopularCategoriesData> {
     response = await http.get(Uri.parse('https://www.maakview.com/api/v1/setting/home/popular_categories'));
 
     if(response.statusCode==200){
-      //print('okay');
+     print('okay');
       return AllCategorieSlideModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception(('Failed to load'));
     }
 
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controller.dispose();
+    super.dispose();
   }
 
 

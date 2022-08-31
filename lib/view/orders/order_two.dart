@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:maakview_app/provider/add_cart.dart';
+import 'package:fluttericon/elusive_icons.dart';
 import 'package:provider/provider.dart';
 
+import '../../provider/add_cart.dart';
 import '../../routes/routes.dart';
 
-import 'package:fluttericon/elusive_icons.dart';
-
-class Orders extends StatefulWidget {
-  const Orders({Key? key}) : super(key: key);
+class Order_two extends StatefulWidget {
+  const Order_two({Key? key}) : super(key: key);
 
   @override
-  State<Orders> createState() => _OrdersState();
+  State<Order_two> createState() => _Order_twoState();
 }
 
-class _OrdersState extends State<Orders> {
+class _Order_twoState extends State<Order_two> {
   @override
   Widget build(BuildContext context) {
-    bool isChecked = false;
-
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Orders'),
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
 
       ),
       body: SingleChildScrollView(

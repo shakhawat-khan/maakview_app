@@ -12,6 +12,7 @@ import '../../../model/home/auth/response_post_phone_number.dart';
 import '../../../services/shared_preferences_service.dart';
 import '../../../view/auth/update_name_address_phone.dart';
 import '../../../view/onBording.dart';
+import '../../../view/user_address/address.dart';
 
 
 class ResponseNumber extends StatelessWidget {
@@ -55,7 +56,10 @@ class ResponseNumber extends StatelessWidget {
     PrefService _perfService = PrefService();
 
     return Consumer<LoginToHome>(
+
+
       builder: (context,value,child){
+        value.catchId(data.id.toString());
         return Drawer(
           //backgroundColor: Colors.indigo,
           child: Column(
@@ -144,6 +148,27 @@ class ResponseNumber extends StatelessWidget {
                 ),
                 title: Text('Order history',style: TextStyle(fontSize: 15),),
                 onTap: () {},
+              ),
+              Divider(
+                color: Colors.grey,
+              ),
+
+              ListTile(
+                hoverColor: Colors.blue,
+                dense: true,
+                visualDensity: VisualDensity(vertical: -4),
+                leading: Icon(
+                  Icons.location_city,
+                  color: Colors.indigo,
+                ),
+                title: Text('Address',style: TextStyle(fontSize: 15),),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserAddress()),
+                  );
+
+                },
               ),
               Divider(
                 color: Colors.grey,

@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/home/most_popular_details_model.dart';
@@ -76,7 +78,15 @@ class DetailsMostPopularData extends StatelessWidget {
           child: Column(
             children: [
 
-              Image.network(data.thumbnailImage,fit: BoxFit.cover,),
+              CachedNetworkImage(
+                  imageUrl: data.thumbnailImage,
+                filterQuality: FilterQuality.low,
+                fit: BoxFit.cover,
+                placeholder: (context,url){
+                  return CircularProgressIndicator();
+                },
+
+              ),
 
               Row(
                 children: [
@@ -170,6 +180,8 @@ class DetailsMostPopularData extends StatelessWidget {
                   },
                 ),
 
+                SizedBox(width: 10,)
+
               ],),
 
               Html(data: data.description.toString()),
@@ -184,7 +196,15 @@ class DetailsMostPopularData extends StatelessWidget {
             //mainAxisAlignment: MainAxisAlignment.start,
             children: [
 
-              Image.network(data.thumbnailImage,fit: BoxFit.cover,),
+            CachedNetworkImage(
+            imageUrl: data.thumbnailImage,
+            filterQuality: FilterQuality.low,
+            fit: BoxFit.cover,
+              placeholder: (context,url){
+              return CircularProgressIndicator();
+              },
+
+          ),
 
               SizedBox(height: 10,),
 
@@ -310,6 +330,9 @@ class DetailsMostPopularData extends StatelessWidget {
                     );
                   },
                 ),
+                SizedBox(width: 10,),
+
+
 
               ],),
 

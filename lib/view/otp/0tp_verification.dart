@@ -7,8 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:maakview_app/services/shared_preferences_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../controller/home/auth/response_phone_number_data.dart';
-import '../../model/home/auth/response_post_phone_number.dart';
+
 import '../../routes/routes.dart';
 import 'lib/routes/routes.dart';
 import 'package:http/http.dart' as http ;
@@ -75,9 +74,10 @@ class _OtpState extends State<Otp> {
     response = await http.get(Uri.parse('https://maakview.com/otp/$otp/${widget.number}'));
 
     //print(otp+' ' + phoneNumber);
+    /*kldsjlfk*/
 
     if(response.statusCode==200){
-      print('okay');
+      //print('okay');
 
     } else {
       throw Exception(('Failed to load'));
@@ -138,6 +138,11 @@ class _OtpState extends State<Otp> {
     startTimer();
     genRandomNumber();
     launchUrlTest(otp);
+    fieldText1.dispose();
+    fieldText2.dispose();
+    fieldText3.dispose();
+    fieldText4.dispose();
+
 
     super.dispose();
   }

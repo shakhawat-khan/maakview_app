@@ -37,6 +37,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
               final data = snapshot.data;
 
               if(snapshot.hasData){
+
                 return buildForm(data!,context);
 
                 //Text(snapshot.data!.user.email);
@@ -91,105 +92,109 @@ class _UpdateInfoState extends State<UpdateInfo> {
 
 
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Update Info'),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
+
+
+    return Consumer<LoginToHome>(
+        builder: (context,child,value){
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Update Info'),
+            ),
+            body: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
 
-                SizedBox(height: 20,),
+                      SizedBox(height: 20,),
 
 
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: NetworkImage('https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png'),
-                      fit: BoxFit.cover,
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: NetworkImage('https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png'),
+                            fit: BoxFit.cover,
 
-                    ),
-                  ),
-                ),
+                          ),
+                        ),
+                      ),
 
-                SizedBox(height: 20,),
+                      SizedBox(height: 20,),
 
-               /* Container(
+                      /* Container(
                   child: formField(data.name,'Name','mr.abc',Icon(Icons.abc,color: Colors.indigo),TextInputType.text,name ,formKey1 ),
 
                   width: MediaQuery.of(context).size.width,
                 ),*/
 
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: TextField(
-                    controller: textFieldController1,
-                    decoration: InputDecoration(
-                      labelText: 'Name',
-                      prefixIcon: Icon(Icons.abc_rounded,color: Colors.indigo,),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: TextField(
+                          controller: textFieldController1,
+                          decoration: InputDecoration(
+                            labelText: 'Name',
+                            prefixIcon: Icon(Icons.abc_rounded,color: Colors.indigo,),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderSide: BorderSide(color: Colors.indigo),
+                            ),
+                          ),
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.indigo),
-                      ),
-                    ),
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
 
 
-                SizedBox(height: 20,),
+                      SizedBox(height: 20,),
 
-               /* Container(
+                      /* Container(
                   child: formField(data.email,'Email','name@example.com',Icon(Icons.email_outlined,color: Colors.indigo,),TextInputType.emailAddress,email,formKey2),
 
                   width: MediaQuery.of(context).size.width,
                 ),*/
 
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: TextField(
-                    controller: textFieldController2,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email,color: Colors.indigo,),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: TextField(
+                          controller: textFieldController2,
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                            prefixIcon: Icon(Icons.email,color: Colors.indigo,),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderSide: BorderSide(color: Colors.indigo),
+                            ),
+                          ),
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.indigo),
-                      ),
-                    ),
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
 
 
-                SizedBox(height: 20,),
+                      SizedBox(height: 20,),
 
 
-                /*Container(
+                      /*Container(
                   child: formField(data.phone,'Phone Number','01*********',Icon(Icons.phone,color: Colors.indigo,),TextInputType.number,number,formKey3),
 
                   width: MediaQuery.of(context).size.width,
@@ -197,73 +202,73 @@ class _UpdateInfoState extends State<UpdateInfo> {
 */
 
 
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 100,
-                  child: TextField(
-                    controller: textFieldController3,
-                    decoration: InputDecoration(
-                      labelText: 'Address',
-                      prefixIcon: Icon(Icons.location_city,color: Colors.indigo,),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 100,
+                        child: TextField(
+                          controller: textFieldController3,
+                          decoration: InputDecoration(
+                            labelText: 'Address',
+                            prefixIcon: Icon(Icons.location_city,color: Colors.indigo,),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderSide: BorderSide(color: Colors.indigo),
+                            ),
+                          ),
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.indigo),
+
+
+
+
+                      SizedBox(height: 35,),
+
+
+                      ElevatedButton(
+                          onPressed: (){
+
+                            print(email);
+                            print(name);
+                            print(number);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  UpdateDone(
+                                id: data.id.toString(),
+                                name:textFieldController1.text ,
+                                email: textFieldController2.text,
+                                phone: data.phone.toString(),
+
+                              )),
+                            );
+
+                            //print(name);
+                            //print(number);
+                            //print('i am here');
+                            //postData1();
+
+
+                          },
+                          child:Text('Update')
                       ),
-                    ),
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
+
+
+                    ],
                   ),
                 ),
-
-
-
-
-                SizedBox(height: 35,),
-
-
-                ElevatedButton(
-                    onPressed: (){
-
-                      print(email);
-                      print(name);
-                      print(number);
-
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>  UpdateDone(
-                          id: data.id.toString(),
-                          name:textFieldController1.text ,
-                          email: textFieldController2.text,
-                          phone: data.phone.toString(),
-
-                        )),
-                      );
-
-                      //print(name);
-                      //print(number);
-                      //print('i am here');
-                  //postData1();
-
-
-                    },
-                    child:Text('Update')
-                ),
-
-
               ],
             ),
-          ),
-        ],
-      ),
+          );
+        }
     );
 
   }

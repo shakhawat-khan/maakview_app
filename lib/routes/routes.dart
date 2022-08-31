@@ -5,6 +5,7 @@ import 'package:maakview_app/view/bottom_navBar/bottom_nav.dart';
 import 'package:maakview_app/view/home/home_screen.dart';
 import 'package:maakview_app/view/login.dart';
 import 'package:maakview_app/view/onBording.dart';
+import 'package:maakview_app/view/orders/order_two.dart';
 import 'package:maakview_app/view/otp/0tp_verification.dart';
 import 'package:maakview_app/view/payment/Bkash.dart';
 import 'package:maakview_app/view/payment/cash_on_delivery.dart';
@@ -15,7 +16,8 @@ import 'package:maakview_app/view/term_and_condition.dart';
 import '../controller/home/view_all_categories.dart';
 
 import '../model/home/viewall_categoreis_model.dart';
-import '../view/details_most_popular_data/details_data.dart';
+
+import '../view/details_of_product/details_data.dart';
 import '../view/orders/orders.dart';
 import '../view/payment/payment.dart';
 import '../view/pos/pos.dart';
@@ -39,6 +41,7 @@ class RouteManager  {
   static const String order = '/order';
   static const String splash = '/splash';
   static const String search = '/search';
+  static const String order_two = '/order_two';
 
 
 
@@ -75,7 +78,7 @@ class RouteManager  {
 
       case view_all_categories:
         return MaterialPageRoute(builder: (context){
-          return Categories();
+          return ViewAllCategories();
         });
 
       case home:
@@ -128,6 +131,12 @@ class RouteManager  {
         return MaterialPageRoute(builder: (context){
           return Result(keyword: valuePassed['keyword'],);
         });
+
+      case order_two:
+        return MaterialPageRoute(builder: (context){
+          return Order_two();
+        });
+
 
 
 

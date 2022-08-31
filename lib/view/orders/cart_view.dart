@@ -20,6 +20,24 @@ class OrderView   {
 
   });
 
+  OrderView.fromJson(Map<String,dynamic> json) :
+    card_image=json['card_image'],
+    card_name = json['card_name'],
+    card_price = json['card_price'],
+    quantity = json['quantity'],
+    id = json['id'],
+    all_price = json['all_price'];
+
+    Map<String,dynamic> toJson()=> {
+      'card_image': card_image,
+      'card_name' : card_name,
+      'card_price' : card_price,
+      'quantity' : quantity,
+      'id' : id,
+      'all_price' : all_price,
+    };
+
+
 }
 
 

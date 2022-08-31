@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 class LoginToHome with ChangeNotifier{
 
   String number='';
+  String id1 = '';
 
 
   Future<ResponsePostNumber>getData() async{
@@ -42,6 +43,14 @@ class LoginToHome with ChangeNotifier{
   void catchNumber(String num){
 
     number = num;
+
+    notifyListeners();
+
+  }
+
+  void catchId(String id){
+
+    id1 = id;
 
     notifyListeners();
 
