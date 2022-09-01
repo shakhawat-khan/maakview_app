@@ -1,86 +1,81 @@
-// To parse this JSON data, do
-//
-//     final listAddress = listAddressFromJson(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
-ListAddress listAddressFromJson(String str) => ListAddress.fromJson(json.decode(str));
-
-String listAddressToJson(ListAddress data) => json.encode(data.toJson());
-
 class ListAddress {
-  ListAddress({
-    required this.data,
-    required this.success,
-    required this.status,
-  });
+  List<Data>? data;
+  bool? success;
+  int? status;
 
-  List<Datum> data;
-  bool success;
-  int status;
+  ListAddress({this.data, this.success, this.status});
 
-  factory ListAddress.fromJson(Map<String, dynamic> json) => ListAddress(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-    success: json["success"],
-    status: json["status"],
-  );
+  ListAddress.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = <Data>[];
+      json['data'].forEach((v) {
+        data!.add(new Data.fromJson(v));
+      });
+    }
+    success = json['success'];
+    status = json['status'];
+  }
 
-  Map<String, dynamic> toJson() => {
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "success": success,
-    "status": status,
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    data['success'] = this.success;
+    data['status'] = this.status;
+    return data;
+  }
 }
 
-class Datum {
-  Datum({
-    required this.id,
-    required this.userId,
-    required this.address,
-    required this.country,
-    required this.city,
-    required this.state,
-    required this.postalCode,
-    required this.phone,
-    required this.defaultShipping,
-    required this.defaultBilling,
-  });
+class Data {
+  int? id;
+  String? userId;
+  String? address;
+  String? country;
+  String? city;
+  String? state;
+  String? postalCode;
+  String? phone;
+  String? defaultShipping;
+  String? defaultBilling;
 
-  int id;
-  String userId;
-  String address;
-  String country;
-  String city;
-  String state;
-  String postalCode;
-  String phone;
-  String defaultShipping;
-  String defaultBilling;
+  Data(
+      {this.id,
+        this.userId,
+        this.address,
+        this.country,
+        this.city,
+        this.state,
+        this.postalCode,
+        this.phone,
+        this.defaultShipping,
+        this.defaultBilling});
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    id: json["id"],
-    userId: json["user_id"],
-    address: json["address"],
-    country: json["country"],
-    city: json["city"],
-    state: json["state"],
-    postalCode: json["postal_code"],
-    phone: json["phone"],
-    defaultShipping: json["default_shipping"],
-    defaultBilling: json["default_billing"],
-  );
+  Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userId = json['user_id'];
+    address = json['address'];
+    country = json['country'];
+    city = json['city'];
+    state = json['state'];
+    postalCode = json['postal_code'];
+    phone = json['phone'];
+    defaultShipping = json['default_shipping'];
+    defaultBilling = json['default_billing'];
+  }
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "user_id": userId,
-    "address": address,
-    "country": country,
-    "city": city,
-    "state": state,
-    "postal_code": postalCode,
-    "phone": phone,
-    "default_shipping": defaultShipping,
-    "default_billing": defaultBilling,
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['user_id'] = this.userId;
+    data['address'] = this.address;
+    data['country'] = this.country;
+    data['city'] = this.city;
+    data['state'] = this.state;
+    data['postal_code'] = this.postalCode;
+    data['phone'] = this.phone;
+    data['default_shipping'] = this.defaultShipping;
+    data['default_billing'] = this.defaultBilling;
+    return data;
+  }
 }

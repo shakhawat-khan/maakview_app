@@ -80,11 +80,6 @@ class _UpdateInfoState extends State<UpdateInfo> {
 
     final data = responsePostNumber.user;
 
-    String name = '';
-
-    String email ='kkk' ;
-
-    String number = '' ;
 
     TextEditingController textFieldController1 = TextEditingController(text: data.name);
     TextEditingController textFieldController2 = TextEditingController(text: data.email);
@@ -236,10 +231,6 @@ class _UpdateInfoState extends State<UpdateInfo> {
 
                       ElevatedButton(
                           onPressed: (){
-
-                            print(email);
-                            print(name);
-                            print(number);
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) =>  UpdateDone(

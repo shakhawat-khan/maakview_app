@@ -6,25 +6,25 @@ import 'package:http/http.dart' as http ;
 
 import '../bottom_navBar/bottom_nav.dart';
 
-class UpdateDoneAddress extends StatefulWidget {
+class UpdateDoneAddressCreate extends StatefulWidget {
 
 
-   String address;
-   String city;
-   String id;
-   String phone;
+   final address;
+   final city;
+   final id;
+   final phone;
 
-   UpdateDoneAddress({
+   UpdateDoneAddressCreate({
      required this.city,
      required this.address,
      required this.id,
      required this.phone});
 
   @override
-  State<UpdateDoneAddress> createState() => _UpdateDoneAddressState();
+  State<UpdateDoneAddressCreate> createState() => _UpdateDoneAddressCreateState();
 }
 
-class _UpdateDoneAddressState extends State<UpdateDoneAddress> {
+class _UpdateDoneAddressCreateState extends State<UpdateDoneAddressCreate> {
 
   Future<void>postData1() async{
 
@@ -35,7 +35,7 @@ class _UpdateDoneAddressState extends State<UpdateDoneAddress> {
     //print(widget.phone);
 
     var body = jsonEncode({
-      "id": 93,
+      "id": widget.id,
       "address": widget.address,
       "city": '48401',
       "phone": widget.phone,

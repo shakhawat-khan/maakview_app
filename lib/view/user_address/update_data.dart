@@ -1,33 +1,37 @@
+
 import 'package:flutter/material.dart';
 import 'package:maakview_app/provider/from_login_to_responsePhoneNumber.dart';
-import 'package:maakview_app/view/bottom_navBar/bottom_nav.dart';
-import 'package:maakview_app/view/user_address/update_done_address_create.dart';
+import 'package:maakview_app/view/user_address/delete.dart';
+import 'package:maakview_app/view/user_address/update_done_address_update.dart';
 import 'package:provider/provider.dart';
 
-class AddAddress extends StatelessWidget {
-  const AddAddress({Key? key}) : super(key: key);
+class UpdateDataAddress extends StatelessWidget {
+
+   final city;
+   final address;
+   final address_id;
+
+   UpdateDataAddress({required this.city,required this.address,required this.address_id});
+
 
   @override
   Widget build(BuildContext context) {
 
-    TextEditingController textFieldController1 = TextEditingController();
-    TextEditingController textFieldController2 = TextEditingController();
+    TextEditingController textFieldController1 = TextEditingController(text: city);
+    TextEditingController textFieldController2 = TextEditingController(text: address);
+    TextEditingController textFieldController3 = TextEditingController();
+
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Address'),
+      appBar: AppBar(title: Text('Update Address'),
       ),
 
       body: Consumer<LoginToHome>(
-
         builder: (context,value,child){
-
           return Column(
-
-            crossAxisAlignment: CrossAxisAlignment.center,
-
             children: [
               SizedBox(height: 20,),
+
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: TextField(
@@ -80,22 +84,51 @@ class AddAddress extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20,),
+              SizedBox(height: 35,),
 
-              ElevatedButton(onPressed: (){
 
-                Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (context, )=> UpdateDoneAddressCreate(id: value.id1 ,address:textFieldController2.text ,city:textFieldController1.text ,phone:value.number ,) )
-                );
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>  UpdateDoneAddressUpdate(
+                            id: value.id1 ,
+                            address_id:address_id,
+                            city: city,
+                            address: textFieldController2.text,
+                          )),
+                        );
+                      },
+                      child:Text('Update')
+                  ),
 
-              }, child: Text('submit'))
+                  SizedBox(width: 20,),
+
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>  DeleteAddress(userId: value.id1, addressId: address_id)),
+                        );
+                      },
+                      child:Text('Delete')
+
+                  ),
+
+                ],
+              ),
 
             ],
-
           );
         },
 
-      ),
+      ) ,
 
     );
   }
