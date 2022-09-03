@@ -48,8 +48,6 @@ class _UserAddressState extends State<UserAddress> {
               ListAddressData(id: value.id1.toString(),),
 
               //CitiesAddressData(),
-
-
             ],
           );
         },

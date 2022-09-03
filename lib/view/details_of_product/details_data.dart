@@ -53,8 +53,14 @@ class DetailsData extends StatelessWidget {
 
       body: DetailsMostPopularData(slug: slug,),
 
+      // TODO: Here THE like api integration in like button Use Isliked as a bool variable form API
+
+
+
       floatingActionButton: FloatingActionButton(
-          onPressed: () {  },
+          onPressed: () {
+
+          },
           child: LikeButton(),
           backgroundColor: Colors.white) ,
 

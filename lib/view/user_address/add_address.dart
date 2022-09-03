@@ -1,17 +1,58 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:maakview_app/provider/from_login_to_responsePhoneNumber.dart';
 import 'package:maakview_app/view/bottom_navBar/bottom_nav.dart';
 import 'package:maakview_app/view/user_address/update_done_address_create.dart';
 import 'package:provider/provider.dart';
 
-class AddAddress extends StatelessWidget {
+import 'package:http/http.dart' as http;
+
+class AddAddress extends StatefulWidget {
   const AddAddress({Key? key}) : super(key: key);
+
+  @override
+  State<AddAddress> createState() => _AddAddressState();
+}
+
+
+class _AddAddressState extends State<AddAddress> {
+
+  List categoryItemlist = [];
+
+  Future getAllCategory() async {
+    var baseUrl = "https://gssskhokhar.com/api/classes/"; // ToDO: change the API here
+
+    http.Response response = await http.get(Uri.parse(baseUrl));
+
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      setState(() {
+        //
+         print(jsonData);
+        categoryItemlist = jsonData;
+        print(categoryItemlist);
+      });
+    }
+  }
+
+  // TODO:
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAllCategory();
+
+  }
 
   @override
   Widget build(BuildContext context) {
 
     TextEditingController textFieldController1 = TextEditingController();
     TextEditingController textFieldController2 = TextEditingController();
+
+    var dropdownvalue;
 
     return Scaffold(
       appBar: AppBar(
@@ -28,6 +69,29 @@ class AddAddress extends StatelessWidget {
 
             children: [
               SizedBox(height: 20,),
+
+              // TODO: set Dropdown menu API data
+
+              DropdownButton(
+                hint: Text('ChooseNumber'),
+                items: categoryItemlist.map((item) {
+                  return DropdownMenuItem(
+                    value: item['ClassName'].toString(),
+                    child: Text(item['ClassCode'].toString()),
+                  );
+                }).toList(),
+                onChanged: (newVal) {
+                  setState(() {
+                    dropdownvalue = newVal;
+                  });
+                },
+                value: dropdownvalue,
+              ),
+
+              SizedBox(height: 20,),
+
+              // TODO: remove this text field USE dropdown menu
+
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: TextField(

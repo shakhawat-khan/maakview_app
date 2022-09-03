@@ -119,7 +119,9 @@ class ResponseNumber extends StatelessWidget {
                   color: Colors.indigo,
                 ),
                 title: Text('Offers',style: TextStyle(fontSize: 15),),
-                onTap: () {},
+                onTap: () {
+                  // TODO: Connect Offer API here
+                },
               ),
               Divider(
                 color: Colors.grey,
@@ -133,7 +135,9 @@ class ResponseNumber extends StatelessWidget {
                   color: Colors.red,
                 ),
                 title: Text('Favorites',style: TextStyle(fontSize: 15),),
-                onTap: () { },
+                onTap: () {
+                  // TODO: Favourite API here
+                },
               ),
               Divider(
                 color: Colors.grey,
@@ -147,7 +151,9 @@ class ResponseNumber extends StatelessWidget {
                   color: Colors.indigo,
                 ),
                 title: Text('Order history',style: TextStyle(fontSize: 15),),
-                onTap: () {},
+                onTap: () {
+                  // TODO: Connect Order History API here
+                },
               ),
               Divider(
                 color: Colors.grey,

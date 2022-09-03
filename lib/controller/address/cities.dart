@@ -34,15 +34,12 @@ class _CitiesAddressDataState extends State<CitiesAddressData> {
 
 
     if(response.statusCode ==200){
+      //print(response);
       return Allcities.fromJson(jsonDecode(response.body.toString()));
     } else {
       throw Exception('Failed to load');
     }
-
-
   }
-
-
 
   @override
   void initState() {
@@ -60,10 +57,10 @@ class _CitiesAddressDataState extends State<CitiesAddressData> {
           final data  = snapshot.data;
 
           if(snapshot.hasData){
-            print(data);
+            //print(data);
             return buildFlashSale(data!);
           } else if (snapshot.hasError){
-            print(snapshot.error);
+            //print(snapshot.error);
             return Text('${snapshot.error}');
           }
 

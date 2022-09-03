@@ -130,6 +130,8 @@ class _ViewAllCategoriesState extends State<ViewAllCategories> {
               child: InkWell(
                 onTap: (){
 
+                  // TODO: Create route and Implement API here
+
                 },
                 child: Card(
                   elevation: 5,
