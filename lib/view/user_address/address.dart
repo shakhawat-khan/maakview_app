@@ -31,24 +31,41 @@ class _UserAddressState extends State<UserAddress> {
       ),
       body: Consumer<LoginToHome>(
         builder: (context,value,child){
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
 
 
-            children: [
-              ElevatedButton(onPressed: (){
+                children: [
+                  SizedBox(height: 20,),
+                  Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width/2,
+                    child: ElevatedButton(
 
-                Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (context, )=> AddAddress()));
+                        onPressed: (){
 
-              },
+                      Navigator.pushReplacement(context, MaterialPageRoute(
+                          builder: (context, )=> AddAddress()));
 
-                  child: Text('Add Address')),
+                    },
 
-              ListAddressData(id: value.id1.toString(),),
+                        child: Text('Add Address')),
+                  ),
 
-              //CitiesAddressData(),
-            ],
+                  SizedBox(height: 20,),
+
+                  ListAddressData(id: value.id1.toString(),),
+
+                  //CitiesAddressData(),
+                ],
+              ),
+            ),
           );
         },
 

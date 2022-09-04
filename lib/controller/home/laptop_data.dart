@@ -126,6 +126,7 @@ class LaptopData extends StatelessWidget {
                               Text('${oCcy.format(data.basePrice)}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                               //Text(data.basePrice.toString(),style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                               Spacer(),
+                              //Todo: connect your API here
                               LikeButton(size: 20,)
                             ],
                           ),

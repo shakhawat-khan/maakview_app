@@ -38,8 +38,8 @@ class _ListAddressDataState extends State<ListAddressData> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height:MediaQuery.of(context).size.height/2,
+    return SingleChildScrollView(
+
       child: FutureBuilder<ListAddress>(
         future:getListAddressData() ,
         builder: (context,snapshot){
@@ -61,6 +61,8 @@ class _ListAddressDataState extends State<ListAddressData> {
   Widget listCities(ListAddress listAddress) {
     final data = listAddress.data;
      return ListView.builder(
+       scrollDirection:Axis.vertical ,
+       shrinkWrap: true,
           itemCount: data!.length,
          itemBuilder: (context,index){
             return Padding(
@@ -77,12 +79,20 @@ class _ListAddressDataState extends State<ListAddressData> {
                   );
                 },
                 child: Card(
+                  elevation: 5,
+                  color: Colors.white60,
                   child: Column(
                       children: [
 
+                        SizedBox(height: 10,),
+                        Text('Country',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
                         Text(data[index].country.toString()),
+                        Text('City',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
                         Text(data[index].city.toString()),
+                        Text('Address',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
                         Text(data[index].address.toString()),
+
+                        SizedBox(height: 10,),
 
                       ],
                     ),

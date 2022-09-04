@@ -258,6 +258,7 @@ class _FlashSaleDataState extends State<FlashSaleData> {
                               Spacer(),
                               Container(
                                   padding: EdgeInsets.only(right: 10),
+                                  // TODO: use like api here
                                   child: LikeButton(size: 20,),)
                             ],
                           ),

@@ -48,7 +48,9 @@ class MostPopularBannerData extends StatelessWidget {
   buildSlider(MostPopularBannerModel mostPopularBannerModel){
     final data = mostPopularBannerModel.data[0].img;
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        // Todo: connect your API here
+      },
       child: Container(
         //height: 100,
         width: double.infinity,
@@ -56,6 +58,4 @@ class MostPopularBannerData extends StatelessWidget {
       ),
     );
   }
-
-
 }

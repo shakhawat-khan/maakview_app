@@ -62,12 +62,17 @@ class _SliderNumberTwoState extends State<SliderNumberTwo> {
             pageViewIndex){
           final data = numberTwoSlider.data[itemIndex];
 
-          return CachedNetworkImage(
-            width: MediaQuery.of(context).size.width,
-            imageUrl:data.img ,
-            filterQuality: FilterQuality.low,
-            fit: BoxFit.fill,
+          return InkWell(
+            onTap: (){
+              // Todo : Connect API here
+            },
+            child: CachedNetworkImage(
+              width: MediaQuery.of(context).size.width,
+              imageUrl:data.img ,
+              filterQuality: FilterQuality.low,
+              fit: BoxFit.fill,
 
+            ),
           );
         },
         options: CarouselOptions(
@@ -84,6 +89,7 @@ class _SliderNumberTwoState extends State<SliderNumberTwo> {
               //print(activeIndex);
             })
 
-    ));
+    )
+    );
   }
 }

@@ -37,7 +37,7 @@ class _UpdateDoneAddressCreateState extends State<UpdateDoneAddressCreate> {
     var body = jsonEncode({
       "id": widget.id,
       "address": widget.address,
-      "city": '48401',
+      "city": widget.city,
       "phone": widget.phone,
     });
 
@@ -54,6 +54,8 @@ class _UpdateDoneAddressCreateState extends State<UpdateDoneAddressCreate> {
     );
 
     if(response.statusCode == 200){
+
+
 
 
       //print(response.body);

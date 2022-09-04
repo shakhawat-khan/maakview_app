@@ -48,7 +48,9 @@ class FlashSaleBannerData extends StatelessWidget {
       BuildContext context){
     final data = mostPopularBannerModel.data[0].img;
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        // Todo: Connect API here
+      },
       child: Container(
         //height: 100,
         width: MediaQuery.of(context).size.width,
