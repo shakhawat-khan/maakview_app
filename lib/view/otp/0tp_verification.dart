@@ -300,7 +300,7 @@ class _OtpState extends State<Otp> {
 
                   _perfService.createCache('password').whenComplete(() {
 
-                    if(counterOtp==0){
+                    if(counterOtp==4){
                       Fluttertoast.showToast(msg: 'correct' ,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 2,
