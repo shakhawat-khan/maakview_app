@@ -73,106 +73,141 @@ class _ListAddressDataState extends State<ListAddressData> {
 
              child: data[index].defaultShipping == "1" ? Padding(
               padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => UpdateDataAddress(
-                        city: data[index].city.toString(),
-                        address: data[index].address.toString(),
-                        address_id: data[index].id.toString(),
-                      )),
-                    );
-                  },
-                  child: Card(
-                      elevation: 5,
-                      child: ListTile(
-                        leading: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+              child: Card(
+                  color: Colors.green[200],
+                  elevation: 2,
+                  child: ListTile(
+                    leading: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 16,),
+                      ],
+                    ),
+                    title: InkWell(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => UpdateDataAddress(
+                            city: data[index].city.toString(),
+                            address: data[index].address.toString(),
+                            address_id: data[index].id.toString(),
+                          )),
+                        );
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(data[index].city.toString()),
 
-                            SizedBox(height: 16,),
+                          Text(data[index].address.toString()),
+
+                          //Text('Address',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
+                        ],
+
+                      ),
+                    ),
+
+                    trailing: Text('default'),
 
 
-                          ],
-                        ),
-                        title: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-
-                            Text('City',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
-                            Text(data[index].city.toString()),
-                            Text('Address',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
-                            Text(data[index].address.toString()),
-
-
-                          ],
-                        ),
-
-                        trailing: Text('default'),
-
-                      )
                   )
               ),
-            ): Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => UpdateDataAddress(
-                        city: data[index].city.toString(),
-                        address: data[index].address.toString(),
-                        address_id: data[index].id.toString(),
-                      )),
-                    );
-                  },
-                  child: Card(
-                      elevation: 5,
-                      child: ListTile(
-                        leading: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+            ): Card(
+               elevation: 5,
+              child: RadioListTile(
 
-                            SizedBox(height: 16,),
+                   value: index,
+                   groupValue: _value,
+                   onChanged: (value) async{
 
-                            Radio(
+                     setState(() {
+                       _value = value;
+                       getListAddressData();
+                     });
 
-                              value: index,
-                              groupValue: _value,
-                              onChanged: (value) async{
+                     await http.get(Uri.parse('http://v1.maakview.com/api/v1/auth/defaultShippingAddress_for_apps/${widget.id}/${data[index].id}'));
 
-                                setState(() {
-                                  _value = value;
-                                   getListAddressData();
-                                });
+                   },
 
-                                await http.get(Uri.parse('http://v1.maakview.com/api/v1/auth/defaultShippingAddress_for_apps/${widget.id}/${data[index].id}'));
-                                MaterialPageRoute(builder: (context) =>ListAddressData(id:data[index].id) );
-                              },
+                 title: Column(
+                   mainAxisAlignment: MainAxisAlignment.start,
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
 
-                            ),
-                          ],
-                        ),
-                        title: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(data[index].city.toString()),
+                              Text(data[index].address.toString()),
 
-                            Text('City',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
-                            Text(data[index].city.toString()),
-                            Text('Address',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
-                            Text(data[index].address.toString()),
+                            ],
+                          ) ),
 
-                          ],
-                        ),
+                        Expanded(
+                            flex: 1,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                    onPressed: (){
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => UpdateDataAddress(
+                                          city: data[index].city.toString(),
+                                          address: data[index].address.toString(),
+                                          address_id: data[index].id.toString(),
+                                        )),
+                                      );
+                                    },
+                                    child: Text(
+                                    'Update',
+                                    style: TextStyle(color: Colors.indigo)),
+                                    style: ButtonStyle(
+                                      overlayColor: MaterialStateProperty.all(Colors.indigo[100]),
 
-                      )
-                  )
-              ),
+                                    ),
+
+                                ),
+
+                                SizedBox(height: 5,),
+
+                                TextButton(onPressed: ()async{
+
+                                  setState(() {
+                                    http.get(Uri.parse('http://v1.maakview.com/api/v1/auth/deleteShippingAddress_for_apps/${widget.id}/${data[index].id}'));
+                                  });
+
+                                }, child:Text('Delete',style: TextStyle(color: Colors.red),),
+
+                                style: ButtonStyle(
+                                  overlayColor: MaterialStateProperty.all(Colors.red[100]),
+
+                                ),
+
+                                )
+                              ],
+                            )
+                        )
+                      ],
+                    )
+
+                   ],
+                 ) ,
+
+                 //subtitle: Text(data[index].address.toString()),
+
+
+               ),
             )
             );
          }

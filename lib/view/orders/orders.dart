@@ -100,15 +100,8 @@ class _OrdersState extends State<Orders> {
                                   SizedBox(width: 10,),
                                   InkWell(
                                       onTap: (){
-
-                                        //value.test[index].quantity--;
-
-                                        //print(object)
-
                                         value.increseQuantity(index);
                                         value.totalPrice(index);
-
-
                                       },
                                       child: Icon(Elusive.plus_circled,size: 18,color: Colors.indigo,)
                                   )

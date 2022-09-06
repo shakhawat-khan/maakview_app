@@ -417,80 +417,89 @@ class _AddAddressState extends State<AddAddress> {
 
         builder: (context,value,child){
 
-          return Column(
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
 
-            crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
 
-            children: [
-              SizedBox(height: 20,),
+              children: [
+                SizedBox(height: 20,),
 
-              // TODO: set Dropdown menu API data
+                // TODO: set Dropdown menu API data
 
-              DropdownButton<String>(
-                value: temp_string,
-
-                hint: Text('Choose City'),
-
-                items: categoryItemlist.map((item) {
-                  return DropdownMenuItem(
-                    value: item['id'].toString(),
-                    child: Text(item['name'].toString()),
-                  );
-                }).toList(),
-                onChanged: (newVal) {
-                  setState(() {
-
-                    temp_string=newVal.toString();
-                    print(temp_string);
-                  });
-                },
-
-              ),
-
-              SizedBox(height: 20,),
-
-              // TODO: remove this text field USE dropdown menu
+                DropdownButton<String>(
+                  value: temp_string,
+                  isExpanded: true,
+                  style: TextStyle(color: Colors.indigoAccent),
+                  underline: Container(
+                    height: 0,
+                  ),
 
 
-              SizedBox(height: 20,),
+                  hint: Text('Choose City'),
 
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: textFieldController2,
-                  decoration: InputDecoration(
-                    labelText: 'Address',
-                    prefixIcon: Icon(Icons.abc_rounded,color: Colors.indigo,),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                        color: Colors.grey,
+                  items: categoryItemlist.map((item) {
+                    return DropdownMenuItem(
+                      value: item['id'].toString(),
+                      child: Text(item['name'].toString()),
+                    );
+                  }).toList(),
+                  onChanged: (newVal) {
+                    setState(() {
+
+                      temp_string=newVal.toString();
+                      print(temp_string);
+                    });
+                  },
+
+                ),
+
+                SizedBox(height: 20,),
+
+                // TODO: remove this text field USE dropdown menu
+
+
+                SizedBox(height: 20,),
+
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: TextField(
+                    controller: textFieldController2,
+                    decoration: InputDecoration(
+                      labelText: 'Address',
+                      prefixIcon: Icon(Icons.abc_rounded,color: Colors.indigo,),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(color: Colors.indigo),
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: Colors.indigo),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
                     ),
                   ),
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
                 ),
-              ),
 
-              SizedBox(height: 20,),
+                SizedBox(height: 20,),
 
-              ElevatedButton(onPressed: (){
+                ElevatedButton(onPressed: (){
 
-                Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (context, )=> UpdateDoneAddressCreate(id: value.id1 ,address:textFieldController2.text ,city:temp_string.toString() ,phone:value.number ,) )
-                );
+                  Navigator.pushReplacement(context, MaterialPageRoute(
+                      builder: (context, )=> UpdateDoneAddressCreate(id: value.id1 ,address:textFieldController2.text ,city:temp_string.toString() ,phone:value.number ,) )
+                  );
 
-              }, child: Text('submit'))
+                }, child: Text('submit'))
 
-            ],
+              ],
 
+            ),
           );
         },
 

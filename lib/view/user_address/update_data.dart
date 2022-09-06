@@ -28,103 +28,89 @@ class UpdateDataAddress extends StatelessWidget {
 
       body: Consumer<LoginToHome>(
         builder: (context,value,child){
-          return Column(
-            children: [
-              SizedBox(height: 20,),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SizedBox(height: 20,),
 
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: textFieldController1,
-                  decoration: InputDecoration(
-                    labelText: 'City',
-                    prefixIcon: Icon(Icons.abc_rounded,color: Colors.indigo,),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                        color: Colors.grey,
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: TextField(
+                    controller: textFieldController1,
+                    decoration: InputDecoration(
+                      labelText: 'City',
+                      prefixIcon: Icon(Icons.abc_rounded,color: Colors.indigo,),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(color: Colors.indigo),
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: Colors.indigo),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
                     ),
                   ),
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
                 ),
-              ),
 
-              SizedBox(height: 20,),
+                SizedBox(height: 20,),
 
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: textFieldController2,
-                  decoration: InputDecoration(
-                    labelText: 'Address',
-                    prefixIcon: Icon(Icons.abc_rounded,color: Colors.indigo,),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                        color: Colors.grey,
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: TextField(
+                    controller: textFieldController2,
+                    decoration: InputDecoration(
+                      labelText: 'Address',
+                      prefixIcon: Icon(Icons.abc_rounded,color: Colors.indigo,),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(color: Colors.indigo),
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: Colors.indigo),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
                     ),
-                  ),
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
                   ),
                 ),
-              ),
 
-              SizedBox(height: 35,),
+                SizedBox(height: 35,),
 
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>  UpdateDoneAddressUpdate(
-                            id: value.id1 ,
-                            address_id:address_id,
-                            city: city,
-                            address: textFieldController2.text,
-                          )),
-                        );
-                      },
-                      child:Text('Update')
-                  ),
-
-                  SizedBox(width: 20,),
-
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>  UpdateDoneAddressUpdate(
+                              id: value.id1 ,
+                              address_id:address_id,
+                              city: city,
+                              address: textFieldController2.text,
+                            )),
+                          );
+                        },
+                        child:Text('Update')
                     ),
-                      onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>  DeleteAddress(userId: value.id1, addressId: address_id)),
-                        );
-                      },
-                      child:Text('Delete')
+                  ],
+                ),
 
-                  ),
-
-                ],
-              ),
-
-            ],
+              ],
+            ),
           );
         },
 
