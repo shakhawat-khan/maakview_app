@@ -202,11 +202,7 @@ class ResponseNumber extends StatelessWidget {
                          context,
                          MaterialPageRoute(builder: (context) => MyApp()),
                        );
-
-
                      });
-
-
                     },
                   ),
                 ),

@@ -56,7 +56,6 @@ class _HomeState extends State<Home> {
 
     await Future.delayed(Duration(seconds: 3));
 
-
   }
 
 

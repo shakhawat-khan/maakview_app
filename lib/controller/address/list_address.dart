@@ -74,16 +74,15 @@ class _ListAddressDataState extends State<ListAddressData> {
              child: data[index].defaultShipping == "1" ? Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
-                  color: Colors.green[200],
-                  elevation: 2,
+                  color: Colors.indigo[100],
+                  elevation: 5,
                   child: ListTile(
                     leading: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 16,),
+
                       ],
                     ),
+
                     title: InkWell(
                       onTap: (){
                         Navigator.push(
@@ -99,17 +98,17 @@ class _ListAddressDataState extends State<ListAddressData> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text('City'),
                           Text(data[index].city.toString()),
 
                           Text(data[index].address.toString()),
 
                           //Text('Address',style: TextStyle(fontSize: 15,fontWeight:FontWeight.w600,),),
                         ],
-
                       ),
                     ),
 
-                    trailing: Text('default'),
+                    trailing: Text('Default',style: TextStyle(color: Colors.green),),
 
 
                   )
@@ -146,6 +145,7 @@ class _ListAddressDataState extends State<ListAddressData> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Text('City'),
                               Text(data[index].city.toString()),
                               Text(data[index].address.toString()),
 
@@ -170,7 +170,7 @@ class _ListAddressDataState extends State<ListAddressData> {
                                       );
                                     },
                                     child: Text(
-                                    'Update',
+                                    'Edit',
                                     style: TextStyle(color: Colors.indigo)),
                                     style: ButtonStyle(
                                       overlayColor: MaterialStateProperty.all(Colors.indigo[100]),

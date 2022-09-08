@@ -24,8 +24,6 @@ class Test extends StatelessWidget {
       ChangeNotifierProvider(create: (context)=> CartProvider() ),
       ChangeNotifierProvider(create: (context)=>OtpVerification()),
       ChangeNotifierProvider(create: (context)=> LoginToHome() ),
-
-
     ],
 
       child: MaterialApp(

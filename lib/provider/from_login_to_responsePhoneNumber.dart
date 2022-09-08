@@ -5,11 +5,26 @@ import 'package:flutter/material.dart';
 import '../model/home/auth/response_post_phone_number.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginToHome with ChangeNotifier{
 
   String number='';
   String id1 = '';
+
+  addStringToSF(String number) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('stringValue', number);
+  }
+
+
+  getStringValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String? stringValue = prefs.getString('stringValue');
+    return stringValue;
+  }
+
 
 
   Future<ResponsePostNumber>getData() async{
@@ -24,7 +39,7 @@ class LoginToHome with ChangeNotifier{
       },
 
       body: jsonEncode(<String, String>{
-        "phone": '0'+number,
+        "phone": '0'+await getStringValuesSF(),
       }),
     );
 
@@ -42,7 +57,8 @@ class LoginToHome with ChangeNotifier{
 
   void catchNumber(String num){
 
-    number = num;
+
+  addStringToSF(num);
 
     notifyListeners();
 

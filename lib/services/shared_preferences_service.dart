@@ -16,4 +16,24 @@ class PrefService {
     SharedPreferences _preferences = await SharedPreferences.getInstance();
     _preferences.remove("password");
   }
+
+  Future createPhoneNumberCache(String number) async{
+    SharedPreferences _preferences = await SharedPreferences.getInstance();
+    _preferences.setString("number", number);
+  }
+
+
+  Future readPhoneNumberCache(String password) async {
+    SharedPreferences _preferences = await SharedPreferences.getInstance();
+    var cache = _preferences.getString("number");
+    return cache;
+  }
+
+  Future removePhoneNumberCache(String password) async {
+    SharedPreferences _preferences = await SharedPreferences.getInstance();
+    _preferences.remove("number");
+  }
+
+
+
 }

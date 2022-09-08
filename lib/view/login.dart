@@ -11,6 +11,9 @@ import 'package:sms_autofill/sms_autofill.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../routes/routes.dart';
 import 'package:http/http.dart' as http ;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../services/shared_preferences_service.dart';
 
 import 'dart:math';
 
@@ -28,6 +31,7 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
   String password = '';
   bool isChecked = false;
   String phoneNumber = '';
+  String sharePref = '';
   bool wait = false;
   //final Uri _url = Uri.parse('https://maakview.com/otp/1234/01557038556');
 
@@ -36,6 +40,21 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
   final Color googleColor = const Color(0xffDF4A32);
 
   Random random = Random();
+  String savedText = '';
+  PrefService _perfService = PrefService();
+
+  addStringToSF(String number) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('stringValue', number);
+  }
+
+  getStringValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String? stringValue = prefs.getString('stringValue');
+    return stringValue;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +123,6 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
                         favorite: ['+880'],
                         showCountryOnly: true,
                         showDropDownButton: false,
-
                         showOnlyCountryWhenClosed: false,
                       ),
                       Flexible(
@@ -125,9 +143,11 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
                               } else
                                 null;
                             },
-                            onChanged: (value) {
+                            onChanged: (value) async{
+
                               setState(() {
                                 phoneNumber = value.toString();
+
                                 //print(value);
                               });
                             },
@@ -204,10 +224,7 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
 
                     return ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: Colors.indigo[900]),
-                      onPressed:
-
-                          () async{
-
+                      onPressed: () async{
                         if (isChecked == false ||
                             formKey.currentState!.validate() == false) {
                           //print('error');
@@ -217,12 +234,12 @@ class MyAppState extends State<MyApp> with ChangeNotifier {
                           //  builder: (context) => Otp(number: phoneNumber)));
                           //print(phoneNumber);
 
-                          value.catchNumber(phoneNumber);
-
+                          addStringToSF(phoneNumber);
+                          value.catchNumber(await getStringValuesSF());
 
                           Navigator.of(context).pushNamed(RouteManager.otpPage,arguments:
 
-                          {'number': phoneNumber,},
+                          {'number': await getStringValuesSF(),},
 
                           );
                         };

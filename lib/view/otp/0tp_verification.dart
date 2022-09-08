@@ -17,12 +17,10 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+
 class Otp extends StatefulWidget {
   String number;
-
-
-
-
 
   Otp({
     required this.number,
@@ -33,7 +31,7 @@ class Otp extends StatefulWidget {
   State<Otp> createState() => _OtpState();
 }
 
-class _OtpState extends State<Otp> {
+class _OtpState extends State<Otp>  {
   int start = 40;
   Color border = Colors.black;
   int counterOtp=0;
@@ -41,11 +39,17 @@ class _OtpState extends State<Otp> {
   Random random = Random();
   bool isloading = false ;
 
+  //var test = widget.number;
+
   String otp = '';
 
   PrefService _perfService = PrefService();
 
+  //SharedPreferences prefs = await SharedPreferences.getInstance();
+
   //final String signature = await SmsAutoFill().getAppSignature;
+
+
 
 
 
